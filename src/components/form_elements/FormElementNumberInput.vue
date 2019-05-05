@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <el-input-number v-model="number" :min="1" :max="100"></el-input-number>
-  </div>
+  <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
+    <el-input-number v-model="number" ></el-input-number>
+  </el-form-item>
 </template>
 
 
 <script>
   export default {
     name: 'NumberInput',
+    props: ['currentField'],
     data() {
     	return {
-    		number: 10
+    		number: 0
     	}
     }
   }

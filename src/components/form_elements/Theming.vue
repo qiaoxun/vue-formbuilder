@@ -32,7 +32,7 @@
 			    		<el-color-picker v-model="themingVars.globalLinkColor"></el-color-picker>
 			  		</el-form-item>
 			  	</el-collapse-item>
-				
+
 				<!-- Inputs -->
 			  	<el-collapse-item title="Inputs" name="inputs">
 			  		<el-form-item label="Border radius">

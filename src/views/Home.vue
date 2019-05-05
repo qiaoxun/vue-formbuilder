@@ -104,8 +104,6 @@ export default {
         }
       }
 
-      console.log("result", result)
-
       return result;
     }
   },
@@ -216,5 +214,12 @@ export default {
             display: inline-block;
         }
     }
+}
+</style>
+
+<style>
+.el-form-item {
+  padding: 10px;
+  margin-bottom: 0px;
 }
 </style>

@@ -36,7 +36,8 @@ export default {
         fieldType: field.name,
         isUnique: field.isUnique,
         span: field.span,
-        labelWidth: field.labelWidth
+        labelWidth: field.labelWidth,
+        label: "label name"
       }
 
       // Show placeholder
@@ -47,7 +48,6 @@ export default {
 
       // Decide whether display label, required field, helpblock
       if (field.group == "form") {
-        newField["label"] = "label name";
         newField["isHelpBlockVisible"] = false;
         newField["helpBlockText"] = 'Please input your helpblock here...';
         newField["isRequired"] = false;

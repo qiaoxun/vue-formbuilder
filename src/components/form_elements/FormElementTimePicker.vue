@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
     <el-time-select
       v-model="time"
       :picker-options="{
@@ -9,13 +9,14 @@
       }"
       placeholder="Select time">
     </el-time-select>
-  </div>
+  </el-form-item>
 </template>
 
 
 <script>
   export default {
     name: 'TimePicker',
+    props: ['currentField'],
     data() {
     	return {
     		time: ''

@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
     	<medium-editor
 	      :text='currentField.fieldText'
 	      :options='options'
 	      v-on:edit="processEditOperation"
 	      custom-tag='div'/>
-    </div>
+    </el-form-item>
 </template>
 
 <script>
@@ -27,13 +27,13 @@
 	    		}
 	    	}
     	},
-    	components: { 
-    		MediumEditor 
+    	components: {
+    		MediumEditor
     	},
     	methods: {
         // Update the field Text so it show the updated text evytime user reposition the element
     		processEditOperation: function (operation) {
-      			this.activeForm.fieldText = operation.api.origElements.innerHTML    
+      			this.activeForm.fieldText = operation.api.origElements.innerHTML
       		}
     	}
   	}

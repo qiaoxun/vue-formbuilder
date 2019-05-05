@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <el-form-item :label-width="currentField.labelWidth + 'px'">
     	<el-button type="primary" class="form__button">{{ currentField.buttonText }}</el-button>
-    </div>
+    </el-form-item>
 </template>
 
 <script>

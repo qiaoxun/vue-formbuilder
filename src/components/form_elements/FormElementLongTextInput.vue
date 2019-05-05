@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
     <el-input
       type="textarea"
       :rows="2"
       :placeholder="currentField.isPlaceholderVisible ? currentField.placeholder : ''"
       v-model="textarea">
     </el-input>
-  </div>
+  </el-form-item>
 </template>
 
 

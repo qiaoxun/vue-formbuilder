@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
     <el-select v-model="value" placeholder="Select">
       <el-option
         v-for="item in currentField.options"
@@ -8,7 +8,7 @@
         :label="item.optionValue">
       </el-option>
     </el-select>
-  </div>
+  </el-form-item>
 </template>
 
 
