@@ -25,7 +25,7 @@ export const FormBuilder = new Vue({
 	data() {
 	    return {
 	      	fields: [
-	      		{ 
+	      		{
 	          		'name': 'TextInput',
 	          		'text': 'Text',
 	          		'group': 'form', //form group
@@ -33,9 +33,11 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': true,
-	          		'isUnique': false
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		        },
-		        { 
+		        {
 	          		'name': 'LongTextInput',
 	          		'text': 'Long Text',
 	          		'group': 'form',
@@ -43,9 +45,11 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': true,
-	          		'isUnique': false
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		        },
-		        { 
+		        {
 	          		'name': 'NumberInput',
 	          		'text': 'Number',
 	          		'group': 'form',
@@ -53,7 +57,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		        },
 				{
 	          		'name': 'SelectList',
@@ -63,7 +69,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false 
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		      	},
 		      	{
 	          		'name': 'RadioButton',
@@ -73,7 +81,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		      	},
 		      	{
 	          		'name': 'Checkbox',
@@ -83,7 +93,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false 
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		      	},
 		      	{
 	          		'name': 'TimePicker',
@@ -93,7 +105,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		      	},
 		      	{
 	          		'name': 'DatePicker',
@@ -103,7 +117,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false 
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		      	},
 		      	{
 	          		'name': 'DatetimePicker',
@@ -113,7 +129,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false 
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		      	},
 		      	{
 	          		'name': 'Rating',
@@ -123,7 +141,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		      	},
 		      	{
 	          		'name': 'Button',
@@ -133,7 +153,9 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': true
+	          		'isUnique': true,
+								'span': 8,
+								'labelWidth': 100
 		      	},
 		      	{
 	          		'name': 'TextEditor',
@@ -143,18 +165,19 @@ export const FormBuilder = new Vue({
 	          		'isRequired': false,
 	          		'isHelpBlockVisible': false,
 	          		'isPlaceholderVisible': false,
-	          		'isUnique': false
+	          		'isUnique': false,
+								'span': 8,
+								'labelWidth': 100
 		      	}
 	      	],
 
 	      	sortElementOptions: {
-	          group: { name:'formbuilder', pull:false, put:true }, 
-	          sort: true,
-	          handle: ".form__actionitem--move"
+	          group: { name:'formbuilder', pull:false, put:true },
+	          sort: true
 	        },
 
-	        dropElementOptions: { 
-	          group: { name:'formbuilder', pull:'clone', put:false }, 
+	        dropElementOptions: {
+	          group: { name:'formbuilder', pull:'clone', put:false },
 	          sort: false,
 	          ghostClass: "sortable__ghost",
 	          filter: ".is-disabled"
@@ -164,7 +187,7 @@ export const FormBuilder = new Vue({
 	methods: {
 		deleteElement(index){
 	        vm.$store.activeForm = [];
-	        vm.$store.activeTabForFields = "elements"; 
+	        vm.$store.activeTabForFields = "elements";
 	        this.$delete(vm.$store.forms, index);
 	    },
 
@@ -175,7 +198,7 @@ export const FormBuilder = new Vue({
 
 	    editElementProperties(form){
 	    	vm.$store.activeForm = form;
-        	vm.$store.activeTabForFields = "properties";  
+        	vm.$store.activeTabForFields = "properties";
 	    }
-	}	
+	}
 });
