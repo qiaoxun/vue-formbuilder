@@ -50,7 +50,7 @@
     </el-form-item> -->
 
     <el-form-item label="Options" v-show="activeForm.options">
-      <ul>
+      <ul class="properties__optionsul">
         <li v-for="(item, index) in activeForm.options" :key="index" class="properties__optionslist">
           <el-row :gutter="5">
             <el-col :xs="20" :sm="20" :md="20" :lg="20" :xl="20">
@@ -111,5 +111,8 @@ export default {
     margin-bottom: 5px;
     list-style: none;
     list-style-type: none;
+}
+.properties__optionsul {
+  padding: 0px;
 }
 </style>
