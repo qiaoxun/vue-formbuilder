@@ -1,5 +1,9 @@
 # vue-formbuilder2.0
 
+Basic code was clone from https://github.com/jmeei/vue-formbuilder, and did some improve.
+
+![alt text](https://github.com/qiaoxun/vue-formbuilder/blob/master/src/assets/WebPageCapture.png?raw=true)
+
 ## Project setup
 ```
 npm install
