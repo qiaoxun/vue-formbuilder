@@ -9,8 +9,9 @@ import Vue from 'vue'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en' // Default lang is Chinese
+//import './assets/scss/_var.scss'
 Vue.use(Element, { locale })
-
+import './assets/scss/main.scss'
 
 import App from './App'
 
@@ -34,14 +35,14 @@ import VueStash from 'vue-stash'
 import store from './store'
 Vue.use(VueStash)
 
+
+
 Vue.config.productionTip = false
 
 var vm = new Vue({
   el: '#app',
   router,
-  components: { App },
   data: { store },
-  template: '<App/>',
   render: h => h(App)
 }).$mount('#app')
 

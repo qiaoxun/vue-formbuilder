@@ -1,37 +1,27 @@
 <template>
-  <div id="app">
-    <home/>
-  </div>
+<div id="app">
+  <el-tabs v-model="activeName">
+    <el-tab-pane label="Design" name="Design"><home/></el-tab-pane>
+    <el-tab-pane label="Preview" name="Preview"><preview/></el-tab-pane>
+  </el-tabs>
+
+</div>
 </template>
 
 <script>
-import Home from './views/Home'
+import Home from '@/views/Home';
+import Preview from '@/views/Preview';
 
 export default {
+  name: 'App',
+  data() {
+    return {
+      activeName: "Design"
+    }
+  },
   components: {
-    Home
+    Home,
+    Preview
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>

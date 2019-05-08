@@ -11,7 +11,7 @@
 
         <el-form>
           <el-row>
-            <draggable :list="forms" class="dragArea" :options="sortElementOptions">
+            <draggable :list="forms" class="dragArea" :group= "{ name:'formbuilder', pull:false, put:true }" :sort="true" ghost-class="sortable__ghost">
               <!-- The form elements starts (on the right) -->
               <!-- <div> -->
                 <el-col v-for="(form, index) in forms" :key="index" v-bind="form" :span="form.span" class="form__group" :class="{ 'is--active': form === activeForm }">
@@ -26,11 +26,11 @@
 
                   <!-- Actions list -->
                   <div class="form__actiongroup">
-                    <el-button circle size="mini" type="primary" icon="el-icon-rank" class="form__actionitem--move"></el-button>
+                    <el-button circle size="mini" icon="el-icon-rank" class="form__actionitem--move"></el-button>
 
                     <el-button-group class="form__actionlist">
-                      <el-button size="mini" type="primary" icon="el-icon-plus" @click="cloneElement(index, form)" v-show="!form.isUnique"></el-button>
-                      <el-button size="mini" type="primary" icon="el-icon-delete" @click="deleteElement(index)"></el-button>
+                      <el-button size="mini" icon="el-icon-plus" @click="cloneElement(index, form)" v-show="!form.isUnique"></el-button>
+                      <el-button size="mini" icon="el-icon-delete" @click="deleteElement(index)"></el-button>
                     </el-button-group>
                   </div>
                 </el-col>
@@ -40,9 +40,6 @@
         </el-form>
       </div>
 
-      <div class="wrapper--snippet">
-        <pre>{{ forms }}</pre>
-      </div>
     </el-main>
 
     <el-aside class="wrapper--sidebar" width="450px">
@@ -156,9 +153,9 @@ export default {
 
 .form__selectedlabel {
     display: none;
-    background: lighten(black, 20%);
+    background: #f5f5f5;
     padding: 3px 5px;
-    color: white;
+    color: black;
     font-size: 10px;
     position: absolute;
     top: -17px;
@@ -175,8 +172,8 @@ export default {
     &:active,
     &:focus,
     &:hover {
-        border-color: lighten(black, 50%);
-        background: lighten(black, 50%);
+        border-color: lighten(rgb(20, 228, 172), 50%);
+        background: lighten(rgb(20, 228, 172), 50%);
     }
 }
 
@@ -186,7 +183,6 @@ export default {
     visibility: hidden;
     z-index: 3;
     right: 0;
-    box-shadow: 4px 4px 0 0 lighten(black, 80%);
     border-radius: 2px;
 }
 
@@ -196,7 +192,7 @@ export default {
     position: relative;
 
     &:hover {
-        border-color: lighten(black, 80%);
+        border-color: #ccd1dc;
 
         .form__actionitem--move {
             visibility: visible;
@@ -204,8 +200,8 @@ export default {
     }
 
     &.is--active {
-        border-color: lighten(black, 50%);
-        background: lighten(black, 95%);
+        border-color: #eaeaea;
+        background: #f5f5f5;
 
         .form__actionlist {
             visibility: visible;

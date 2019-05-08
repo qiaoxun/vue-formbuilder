@@ -1,9 +1,14 @@
 <template>
 <div class="el-tabs__inner">
   <el-row :gutter="10" class="row-bg">
-    <draggable :list="fields" :clone="clone" class="dragArea" :options="dropElementOptions" @start="onStart">
+    <draggable :list="fields" :clone="clone"
+    class="dragArea"
+    :group= "{ name:'formbuilder', pull:'clone', put:false }"
+    :sort="false"
+    filter= ".is-disabled"
+    @start="onStart">
       <el-col :span="12" :class="{ 'is-disabled': checkStopDragCondition(field) }" v-for="(field, index) in fields" :key="index">
-        <el-button class="button__sidebar" type="info">
+        <el-button class="button__sidebar">
           {{ field.text }}
         </el-button>
       </el-col>
@@ -29,9 +34,6 @@ export default {
       fields: FormBuilder.$data.fields,
       dropElementOptions: FormBuilder.$data.dropElementOptions
     };
-  },
-  mounted(){
-    console.log('FormBuilder.$data', FormBuilder.$data)
   },
   methods: {
     clone(field) {
@@ -109,10 +111,10 @@ export default {
 }
 
 // Display this ghost in <main> only
-.wrapper--forms .sortable__ghost {
+ .sortable__ghost {
     position: relative;
-    width: 33.333%;
-    border-bottom: 2px solid black;
+    width: 33.33%;
+    border-bottom: 2px solid #96979a;
     margin-top: 2px;
     margin-bottom: 2px;
 
@@ -122,7 +124,7 @@ export default {
 
     &:before {
         content: "Drag it here";
-        background-color: black;
+        background-color: #96979a;
         color: white;
         position: absolute;
         left: 50%;

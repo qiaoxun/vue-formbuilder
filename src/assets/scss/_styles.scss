@@ -1,0 +1,198 @@
+// Reset css
+// html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote{&:before,&:after{content:'';content:none}}q{&:before,&:after{content:'';content:none}}table{border-collapse:collapse;border-spacing:0}
+
+// Layout
+html, body, body > div, .app-wrapper, #app, .el-container {
+	height: 100%;
+}
+
+body {
+	font-family: 'Roboto', monospace;
+}
+
+.demo-wrapper {
+	position: relative;
+}
+
+	.demo-header {
+		position: absolute;
+	    top: 20px;
+	    font-size: 90px;
+	    max-width: 600px;
+	    color: #6cf2ce;
+	    letter-spacing: -1px;
+	}
+
+	.demo-footer {
+		position: absolute;
+		bottom: 40px;
+		left: 20px;
+
+		a {
+			text-decoration: none;
+			color: inherit;
+			background: #6cf2ce;
+			padding: 10px 20px;
+			border-radius: 30px;
+		}
+	}
+
+	.app-wrapper {
+		display: flex;
+		align-items: center;
+	 	justify-content: center;
+	 	position: relative;
+	}
+
+
+
+.el-main {
+	padding: 0;
+	overflow: hidden;
+}
+
+	.wrapper--forms {
+		height: calc(60vh - 50px);
+		overflow: auto;
+	}
+
+	.wrapper--snippet {
+		height: 19vh;
+		background: #6cf2ce;
+		overflow: auto;
+
+		pre {
+			padding: 20px;
+			color: #6cf2ce;
+			line-height: 1.3;
+		}
+	}
+
+
+
+// Empty state
+.emptyState {
+    text-align: center;
+    color: #96979a;
+    padding-top: 50px;
+
+    .emptyState__p {
+		margin-top: 50px;
+    }
+
+    .emptyState__emoji {
+      font-size: 80px;
+    }
+}
+
+
+// Forms
+.wrapper--forms {
+	padding: 30px;
+	position: relative;
+}
+
+.medium-editor-element {
+	outline: 0;
+}
+
+// Sidebar
+.wrapper--sidebar {
+	padding: 30px;
+
+	.el-tabs {
+		min-height: 450px;
+		border-bottom: 0;
+	}
+
+	.el-tabs__header {
+		margin-bottom: 0;
+	}
+
+	.el-tabs__content {
+		padding: 0px;
+	}
+
+	.el-tabs__inner {
+		padding: 20px;
+	}
+
+		.el-tabs__nav {
+			float: none;
+
+			.el-tabs__item {
+				width: 33.33%;
+				text-align: center;
+			}
+		}
+
+		.el-tabs--border-card {
+			border: 1px solid gray;
+		}
+
+	.el-form-item__label {
+		line-height: 1;
+	}
+}
+
+// Accordian in tabs
+.el-tab-pane {
+	.el-collapse {
+		border-top: 0;
+	}
+
+	.el-collapse-item__header {
+		padding-left: 20px;
+		background-color: transparent;
+		font-size: 11px;
+		text-transform: uppercase;
+		font-weight: 600;
+		color: $--color-primary;
+		letter-spacing: 0.2em;
+		border-bottom-color: $--color-primary;
+
+		&.is-active { border-bottom-color: transparent; }
+	}
+
+	.el-collapse-item__content {
+		padding-bottom: 0;
+
+		.el-form-item {
+			padding: 10px 20px;
+			margin-bottom: 0;
+			border-bottom: 1px solid $--border-color-lighter;
+
+			display: table;
+			width: 100%;
+			box-sizing: border-box;
+
+			.el-form-item__label,
+			.el-form-item__content {
+				float: none;
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.el-form-item__label {
+				color: lighten($--color-text-regular, 10%);
+			}
+
+			.el-form-item__content {
+				line-height: 1;
+				width: 200px;
+				text-align: right;
+			}
+
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+	}
+}
+
+// Preview
+.preview__wrapper {
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}

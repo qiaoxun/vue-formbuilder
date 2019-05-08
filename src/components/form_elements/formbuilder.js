@@ -179,7 +179,6 @@ export const FormBuilder = new Vue({
 	        dropElementOptions: {
 	          group: { name:'formbuilder', pull:'clone', put:false },
 	          sort: false,
-	          ghostClass: "sortable__ghost",
 	          filter: ".is-disabled"
 	        }
 	    }

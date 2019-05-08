@@ -4,27 +4,27 @@ export default {
 	activeTabForFields: 'elements',
 	themingVars: {
 		globalFontFamily: "Arial",
-		globalFontColor: "#777777",
-		globalLinkColor: "#206C92",
+		globalFontColor: "#409EFF",
+		globalLinkColor: "#409EFF",
 		globalFontSize: "16",
 
 		labelFontWeight: "500",
 		labelFontSize: "16",
 		labelMarginBottom: "10",
 
-		helpTextColor: "#cccccc",
+		helpTextColor: "#409EFF",
 		helpTextFontSize: "12",
 		helpTextMarginTop: "10",
 
 
 		inputBorderRadius: "4",
-		inputBorderColor: "#dcdfe6",
-		inputHoverBorderColor: "#c0c4cc",
-		inputFocusBorderColor: "#000000",
-		inputShadowColor: "#9D9D9D",
+		inputBorderColor: "#409EFF",
+		inputHoverBorderColor: "#409EFF",
+		inputFocusBorderColor: "#409EFF",
+		inputShadowColor: "#409EFF",
 
-		buttonBackground: "#000000",
-		buttonBorderColor: "#000000",
-		buttonColor: "#FFFFFF"
+		buttonBackground: "#409EFF",
+		buttonBorderColor: "#409EFF",
+		buttonColor: "#409EFF"
 	}
 }
