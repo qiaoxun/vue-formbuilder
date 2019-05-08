@@ -109,5 +109,7 @@ export default {
 <style lang="scss" scoped>
 .properties__optionslist {
     margin-bottom: 5px;
+    list-style: none;
+    list-style-type: none;
 }
 </style>
