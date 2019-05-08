@@ -4,9 +4,7 @@
     <draggable :list="fields" :clone="clone"
     class="dragArea"
     :group= "{ name:'formbuilder', pull:'clone', put:false }"
-    :sort="false"
-    filter= ".is-disabled"
-    @start="onStart">
+    :sort="false">
       <el-col :span="12" :class="{ 'is-disabled': checkStopDragCondition(field) }" v-for="(field, index) in fields" :key="index">
         <el-button class="button__sidebar">
           {{ field.text }}
@@ -20,12 +18,12 @@
 <script>
 import {
   FormBuilder
-} from '@/components/form_elements/formbuilder'
-import draggable from 'vuedraggable'
+} from '@/components/form_elements/formbuilder';
+import draggable from 'vuedraggable';
 
 export default {
   name: 'Elements',
-  store: ['forms', 'activeForm'],
+  store: ['forms'],
   components: {
     draggable
   },
@@ -81,9 +79,6 @@ export default {
       }
       return newField;
     },
-    onStart() {
-      // console.log("start liao")
-    },
     checkStopDragCondition(field) {
       var form = this.forms,
         formArray = [];
@@ -114,7 +109,7 @@ export default {
  .sortable__ghost {
     position: relative;
     width: 33.33%;
-    border-bottom: 2px solid #96979a;
+    border-bottom: 2px solid #3A8EE6;
     margin-top: 2px;
     margin-bottom: 2px;
 
@@ -124,8 +119,8 @@ export default {
 
     &:before {
         content: "Drag it here";
-        background-color: #96979a;
-        color: white;
+        background-color: #ECF5FF;
+        color: #3A8EE6;
         position: absolute;
         left: 50%;
         font-size: 10px;

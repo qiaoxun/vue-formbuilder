@@ -1,14 +1,8 @@
 <template>
-<div class="main__wrapper">
+<div>
   <el-container>
-    <el-main :style="cssProps">
+    <el-main>
       <div class="wrapper--forms">
-        <!-- Show empty state if empty -->
-        <div v-if="forms.length == 0" class="emptyState">
-          <span class="emptyState__emoji">╭( ✖_✖ )╮</span>
-          <p class="emptyState__p">Drag one element to get started</p>
-        </div>
-
         <el-form>
           <el-row>
             <draggable :list="forms" class="dragArea" :group= "{ name:'formbuilder', pull:false, put:true }" :sort="true" ghost-class="sortable__ghost">
@@ -51,10 +45,6 @@
         <el-tab-pane name="properties" label="Properties">
           <properties v-show="Object.keys($store.activeForm).length > 0"></properties>
         </el-tab-pane>
-
-        <el-tab-pane name="designs" label="Styles">
-          <theming></theming>
-        </el-tab-pane>
       </el-tabs>
 
       <!--{{ $store.activeForm }}-->
@@ -70,39 +60,12 @@ import {
 
 export default {
   name: 'Home',
-  store: ['forms', 'activeForm', 'activeTabForFields', 'themingVars'],
+  store: ['forms', 'activeForm', 'activeTabForFields'],
 
   data() {
     return {
       sortElementOptions: FormBuilder.$data.sortElementOptions
     };
-  },
-
-  computed: {
-    cssProps() {
-      // Return an object that will generate css properties key
-      // to match with the themingVars
-      //
-      // Example output: { '--theme-primary-color': this.themingVars.primaryColor }
-      var result = {},
-        themingVars = this.themingVars;
-
-      for (var v in themingVars) {
-        if (themingVars.hasOwnProperty(v)) {
-          var newV = "--theme-" + _.kebabCase(v),
-            suffix = "";
-
-          // Add px to the value if the default value contain 'px'
-          if (_.includes(newV, 'size')) suffix = "px"
-          else if (_.includes(newV, 'margin')) suffix = "px"
-          else if (_.includes(newV, 'radius')) suffix = "px"
-
-          result[newV] = themingVars[v] + suffix;
-        }
-      }
-
-      return result;
-    }
   },
 
   mounted() {
@@ -130,30 +93,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.main__wrapper {
-    height: 100%;
-}
-
-.emptyState {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
 
 .dragArea {
     margin-left: auto;
     margin-right: auto;
     position: relative;
     min-height: 10px;
+    height: calc(60vh - 50px);
     z-index: 2;
 }
 
 .form__selectedlabel {
     display: none;
-    background: #f5f5f5;
+    background: #ECF5FF;
     padding: 3px 5px;
     color: black;
     font-size: 10px;
@@ -172,8 +124,8 @@ export default {
     &:active,
     &:focus,
     &:hover {
-        border-color: lighten(rgb(20, 228, 172), 50%);
-        background: lighten(rgb(20, 228, 172), 50%);
+        border-color: #409EFF;
+        background: #ECF5FF;
     }
 }
 
@@ -188,11 +140,11 @@ export default {
 
 .form__group {
     margin-bottom: 25px;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     position: relative;
 
     &:hover {
-        border-color: #ccd1dc;
+        border-color: #409EFF;
 
         .form__actionitem--move {
             visibility: visible;
@@ -200,8 +152,8 @@ export default {
     }
 
     &.is--active {
-        border-color: #eaeaea;
-        background: #f5f5f5;
+        border-color: #409EFF;
+        background: #ECF5FF;
 
         .form__actionlist {
             visibility: visible;
@@ -210,12 +162,5 @@ export default {
             display: inline-block;
         }
     }
-}
-</style>
-
-<style>
-.el-form-item {
-  padding: 10px;
-  margin-bottom: 0px;
 }
 </style>

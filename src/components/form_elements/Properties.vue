@@ -8,8 +8,8 @@
 				</el-form-item>
 			</el-col>
 			<el-col :span="12">
-				<el-form-item label="Label Width - Unit is px" v-show="activeForm.hasOwnProperty('labelWidth')">
-					<el-input-number v-model="activeForm.labelWidth" :min="30" :max="1000"></el-input-number>
+				<el-form-item label="Label Width - px" v-show="activeForm.hasOwnProperty('label')">
+					<el-input-number v-model="activeForm.labelWidth" :min="30" :max="1000" controls-position="right"></el-input-number>
 				</el-form-item>
 			</el-col>
 		</el-row>
@@ -22,8 +22,8 @@
       </el-input>
     </el-form-item>
 
-    <el-form-item label="Layout - Max number is 24" v-show="activeForm.hasOwnProperty('span')">
-      <el-input-number v-model="activeForm.span" :min="1" :max="24"></el-input-number>
+    <el-form-item label="Layout - Max value is 24" v-show="activeForm.hasOwnProperty('label')">
+      <el-input-number v-model="activeForm.span" :min="1" :max="24" controls-position="right"></el-input-number>
     </el-form-item>
 
     <el-form-item label="Button text" v-show="activeForm.hasOwnProperty('buttonText')">
@@ -84,6 +84,10 @@ export default {
       fieldProperties: {},
       rules: {}
     }
+  },
+  mounted() {
+    console.log("activeform11 ->", this.activeForm)
+    console.log("activeForm.hasOwnProperty('span') ->", this.activeForm.hasOwnProperty('span'))
   },
   methods: {
     deleteOption(option, index) {

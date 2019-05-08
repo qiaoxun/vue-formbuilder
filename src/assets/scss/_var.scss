@@ -1,8 +1,17 @@
 /* theme color */
-$--color-primary: black;
+$--color-primary: #409EFF;
 
 /* icon font path, required */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+/* component background*/
+// $--background: #ECF5FF;
+
+/* component border-color*/
+// $--border-color: #409EFF;
+
+/* component font color*/
+// $--color: #3A8EE6
 
 /* transition time */
 $animationDuration: 0.1s;

@@ -4,7 +4,6 @@
     <el-tab-pane label="Design" name="Design"><home/></el-tab-pane>
     <el-tab-pane label="Preview" name="Preview"><preview/></el-tab-pane>
   </el-tabs>
-
 </div>
 </template>
 

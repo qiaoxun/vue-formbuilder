@@ -1,5 +1,3 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 
 
@@ -9,7 +7,6 @@ import Vue from 'vue'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en' // Default lang is Chinese
-//import './assets/scss/_var.scss'
 Vue.use(Element, { locale })
 import './assets/scss/main.scss'
 
