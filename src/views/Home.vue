@@ -5,29 +5,28 @@
       <div class="wrapper--forms">
         <el-form>
           <el-row>
-            <draggable :list="forms" class="dragArea" :group= "{ name:'formbuilder', pull:false, put:true }" :sort="true" ghost-class="sortable__ghost">
+            <draggable :list="forms" class="dragArea" :group="{ name:'formbuilder', pull:false, put:true }" :sort="true" ghost-class="sortable__ghost">
               <!-- The form elements starts (on the right) -->
               <!-- <div> -->
-                <el-col v-for="(form, index) in forms" :key="index" v-bind="form" :span="form.span" class="form__group" :class="{ 'is--active': form === activeForm }">
-                  <span class="form__selectedlabel">{{ form.fieldType }}</span>
+              <el-col v-for="(form, index) in forms" :key="index" v-bind="form" :span="form.span" class="form__group" :class="{ 'is--active': form === activeForm }">
+                <span class="form__selectedlabel">{{ form.fieldType }}</span>
 
-                  <div @click="editElementProperties(form)">
-                    <!-- <label class="form__label" v-model="form.label" v-show="form.hasOwnProperty('label')">{{ form.label }}</label> -->
-                    <component :is="form.fieldType" :currentField="form" class="form__field">
-                    </component>
-                    <small class="form__helpblock" v-model="form.helpBlockText" v-show="form.isHelpBlockVisible">{{ form.helpBlockText }} </small>
-                  </div>
+                <div @click="editElementProperties(form)">
+                  <!-- <label class="form__label" v-model="form.label" v-show="form.hasOwnProperty('label')">{{ form.label }}</label> -->
+                  <component :is="form.fieldType" :currentField="form" class="form__field">
+                  </component>
+                </div>
 
-                  <!-- Actions list -->
-                  <div class="form__actiongroup">
-                    <el-button circle size="mini" icon="el-icon-rank" class="form__actionitem--move"></el-button>
+                <!-- Actions list -->
+                <div class="form__actiongroup">
+                  <el-button circle size="mini" icon="el-icon-rank" class="form__actionitem--move"></el-button>
 
-                    <el-button-group class="form__actionlist">
-                      <el-button size="mini" icon="el-icon-plus" @click="cloneElement(index, form)" v-show="!form.isUnique"></el-button>
-                      <el-button size="mini" icon="el-icon-delete" @click="deleteElement(index)"></el-button>
-                    </el-button-group>
-                  </div>
-                </el-col>
+                  <el-button-group class="form__actionlist">
+                    <el-button size="mini" icon="el-icon-plus" @click="cloneElement(index, form)" v-show="!form.isUnique"></el-button>
+                    <el-button size="mini" icon="el-icon-delete" @click="deleteElement(index)"></el-button>
+                  </el-button-group>
+                </div>
+              </el-col>
               <!-- </div> -->
             </draggable>
           </el-row>
@@ -56,34 +55,28 @@
 <script>
 import {
   FormBuilder
-} from '@/components/form_elements/formbuilder'
+} from '@/components/form_elements/formbuilder';
 
 export default {
   name: 'Home',
   store: ['forms', 'activeForm', 'activeTabForFields'],
-
   data() {
     return {
       sortElementOptions: FormBuilder.$data.sortElementOptions
     };
   },
-
   mounted() {
     console.log("form ->", this.forms)
     console.log("activeform ->", this.activeForm)
   },
-
   components: FormBuilder.$options.components,
-
   methods: {
     deleteElement(index) {
       FormBuilder.deleteElement(index)
     },
-
     cloneElement(index, form) {
       FormBuilder.cloneElement(index, form)
     },
-
     editElementProperties(form) {
       FormBuilder.editElementProperties(form)
     }
@@ -93,7 +86,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-
 .dragArea {
     margin-left: auto;
     margin-right: auto;

@@ -68,11 +68,11 @@ export default {
       // Add dummy options for loading the radio/checkbox
       if (field.hasOptions) {
         newField["options"] = [{
-            optionLabel: "Option 1",
+            optionLabel: "Option Label 1",
             optionValue: "Option 1"
           },
           {
-            optionLabel: "Option 2",
+            optionLabel: "Option Label 2",
             optionValue: "Option 2"
           }
         ]
@@ -86,7 +86,7 @@ export default {
       for (var key in form) {
         formArray.push(form[key]['fieldType'])
       }
-
+      console.log('_', _)
       // Check if the fieldname exist in formArray
       // And when the field.isUnique too
       return _.includes(formArray, field.name) && field.isUnique;

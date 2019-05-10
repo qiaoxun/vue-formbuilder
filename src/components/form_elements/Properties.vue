@@ -51,12 +51,27 @@
 
     <el-form-item label="Options" v-show="activeForm.options">
       <ul class="properties__optionsul">
+        <li class="properties__optionslist">
+          <el-row :gutter="5">
+            <el-col :span="10">
+              Value
+            </el-col>
+            <el-col :span="10">
+              Text
+            </el-col>
+            <el-col :span="4">
+            </el-col>
+          </el-row>
+        </li>
         <li v-for="(item, index) in activeForm.options" :key="index" class="properties__optionslist">
           <el-row :gutter="5">
-            <el-col :xs="20" :sm="20" :md="20" :lg="20" :xl="20">
+            <el-col :span="10">
+              <el-input v-model="item.optionLabel">{{item.optionLabel}}</el-input>
+            </el-col>
+            <el-col :span="10">
               <el-input v-model="item.optionValue">{{item.optionValue}}</el-input>
             </el-col>
-            <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="3">
+            <el-col :span="4">
               <el-button @click="deleteOption(activeForm.options, index)" v-show="activeForm.options.length > 1">
                 <i class="el-icon-error"></i>
               </el-button>
@@ -64,10 +79,13 @@
           </el-row>
         </li>
       </ul>
-
       <el-button type="text" @click="addOption(activeForm.options)">
         <i class="el-icon-plus"></i>
         Add more
+      </el-button>
+      <el-button type="text" @click="addOption(activeForm.options)">
+        <i class="el-icon-plus"></i>
+        From Ajax
       </el-button>
     </el-form-item>
   </el-form>
@@ -75,6 +93,8 @@
 </template>
 
 <script>
+import axios_fetch from '@/api/index';
+
 export default {
   name: 'Properties',
   store: ['activeForm'], // Get the form data from Home
@@ -98,7 +118,7 @@ export default {
       let count = option.length + 1;
 
       option.push({
-        optionLabel: "Option " + count,
+        optionLabel: "Option Label " + count,
         optionValue: "Option " + count
       })
     }

@@ -18,6 +18,10 @@ import TextEditor from '@/components/form_elements/FormElementTextEditor'
 import Elements from '@/components/form_elements/Elements'
 import Properties from '@/components/form_elements/Properties'
 
+import _ from 'vue-lodash';
+
+import vm from '@/main'
+
 
 export const FormBuilder = new Vue({
   components: {
@@ -209,7 +213,7 @@ export const FormBuilder = new Vue({
     deleteElement(index) {
       vm.$store.activeForm = [];
       vm.$store.activeTabForFields = "elements";
-      this.$delete(vm.$store.forms, index);
+      vm.$delete(vm.$store.forms, index);
     },
 
     cloneElement(index, form) {
@@ -218,8 +222,6 @@ export const FormBuilder = new Vue({
     },
 
     editElementProperties(form) {
-			console.log('vm.$store.activeForm', vm.$store.activeForm)
-			console.log('form', form)
       vm.$store.activeForm = form;
       vm.$store.activeTabForFields = "properties";
     }
