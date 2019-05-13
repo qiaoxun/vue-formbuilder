@@ -14,6 +14,7 @@ import DatetimePicker from '@/components/form_elements/FormElementDatetimePicker
 import Rating from '@/components/form_elements/FormElementRating'
 import Button from '@/components/form_elements/FormElementButton'
 import TextEditor from '@/components/form_elements/FormElementTextEditor'
+import Carousel from '@/components/form_elements/FormElementCarousel'
 
 import Elements from '@/components/form_elements/Elements'
 import Properties from '@/components/form_elements/Properties'
@@ -39,7 +40,8 @@ export const FormBuilder = new Vue({
     DatetimePicker,
     Rating,
     Button,
-    TextEditor
+    TextEditor,
+    Carousel
   },
   data() {
     return {
@@ -186,6 +188,23 @@ export const FormBuilder = new Vue({
           'isUnique': false,
           'span': 8,
           'labelWidth': 100
+        },
+        {
+          'name': 'Carousel',
+          'text': 'Carousel',
+          'group': 'static',
+          'hasOptions': false,
+          'isRequired': false,
+          'isHelpBlockVisible': false,
+          'isPlaceholderVisible': false,
+          'isUnique': false,
+          'span': 24,
+          'labelWidth': 100,
+          'controlHeight': 150,
+          'itemsNumber': 4,
+          'items': [{
+            url:''
+          }]
         }
       ],
 

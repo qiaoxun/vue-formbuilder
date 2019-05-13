@@ -14,6 +14,10 @@
 			</el-col>
 		</el-row>
 
+    <el-form-item label="Height - px" v-show="activeForm.hasOwnProperty('fieldType') && activeForm['fieldType'] == 'Carousel'">
+      <el-input-number v-model="activeForm.controlHeight" controls-position="right"></el-input-number>
+    </el-form-item>
+
     <!-- Show only when 'isPlacehodlerVisible' key exist -->
     <el-form-item label="Placeholder" v-show="activeForm.hasOwnProperty('isPlaceholderVisible')">
       <el-switch v-model="activeForm.isPlaceholderVisible"></el-switch>
@@ -48,6 +52,25 @@
         {{activeForm.helpBlockText}}
       </el-input>
     </el-form-item> -->
+
+    <el-form-item label="Items" v-show="activeForm.hasOwnProperty('items')">
+      <li v-for="(item, index) in activeForm.items" :key="index" class="properties__optionslist">
+        <el-row :gutter="5">
+          <el-col :span="20">
+            <el-input v-model="item.url">{{item.url}}</el-input>
+          </el-col>
+          <el-col :span="4">
+            <el-button v-show="activeForm.items.length > 1">
+              <i class="el-icon-error"></i>
+            </el-button>
+          </el-col>
+        </el-row>
+      </li>
+      <el-button type="text" @click="addItem(activeForm.items)">
+        <i class="el-icon-plus"></i>
+        Add more
+      </el-button>
+    </el-form-item>
 
     <el-form-item label="Options" v-show="activeForm.options">
       <ul class="properties__optionsul">
@@ -113,14 +136,15 @@ export default {
     deleteOption(option, index) {
       this.$delete(option, index)
     },
-
     addOption(option) {
       let count = option.length + 1;
-
       option.push({
         optionLabel: "Option Label " + count,
         optionValue: "Option " + count
       })
+    },
+    addItem(item) {
+      item.push({url: ''});
     }
   }
 }

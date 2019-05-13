@@ -91,7 +91,7 @@ export default {
     margin-right: auto;
     position: relative;
     min-height: 10px;
-    height: calc(60vh - 50px);
+    height: calc(60vh);
     z-index: 2;
 }
 

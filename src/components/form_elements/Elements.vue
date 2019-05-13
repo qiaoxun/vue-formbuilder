@@ -64,6 +64,11 @@ export default {
         newField["fieldText"] = "Start typing...";
       }
 
+      if (field.name == "Carousel") {
+        newField["controlHeight"] = field.controlHeight;
+        newField["items"] = field.items;
+      }
+
 
       // Add dummy options for loading the radio/checkbox
       if (field.hasOptions) {
@@ -86,7 +91,6 @@ export default {
       for (var key in form) {
         formArray.push(form[key]['fieldType'])
       }
-      console.log('_', _)
       // Check if the fieldname exist in formArray
       // And when the field.isUnique too
       return _.includes(formArray, field.name) && field.isUnique;
