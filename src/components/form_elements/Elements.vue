@@ -35,54 +35,7 @@ export default {
   },
   methods: {
     clone(field) {
-      var newField = {
-        fieldType: field.name,
-        isUnique: field.isUnique,
-        span: field.span,
-        labelWidth: field.labelWidth,
-        label: "label name"
-      }
-
-      // Show placeholder
-      if (field.isPlaceholderVisible) {
-        newField["isPlaceholderVisible"] = false;
-        newField["placeholder"] = 'Input your text here...';
-      }
-
-      // Decide whether display label, required field, helpblock
-      if (field.group == "form") {
-        newField["isHelpBlockVisible"] = false;
-        newField["helpBlockText"] = 'Please input your helpblock here...';
-        newField["isRequired"] = false;
-      }
-
-      if (field.group == "button") {
-        newField["buttonText"] = "Submit your form";
-      }
-
-      if (field.name == "TextEditor") {
-        newField["fieldText"] = "Start typing...";
-      }
-
-      if (field.name == "Carousel") {
-        newField["controlHeight"] = field.controlHeight;
-        newField["items"] = field.items;
-      }
-
-
-      // Add dummy options for loading the radio/checkbox
-      if (field.hasOptions) {
-        newField["options"] = [{
-            optionLabel: "Option Label 1",
-            optionValue: "Option 1"
-          },
-          {
-            optionLabel: "Option Label 2",
-            optionValue: "Option 2"
-          }
-        ]
-      }
-      return newField;
+      return _.cloneDeep(field);
     },
     checkStopDragCondition(field) {
       var form = this.forms,

@@ -26,7 +26,7 @@
       </el-input>
     </el-form-item>
 
-    <el-form-item label="Layout - Max value is 24" v-show="activeForm.hasOwnProperty('label')">
+    <el-form-item label="Layout - Max value is 24" v-show="activeForm.hasOwnProperty('span')">
       <el-input-number v-model="activeForm.span" :min="1" :max="24" controls-position="right"></el-input-number>
     </el-form-item>
 
@@ -52,6 +52,22 @@
         {{activeForm.helpBlockText}}
       </el-input>
     </el-form-item> -->
+    <el-row>
+      <el-col :span="12">
+        <el-form-item label="activeText" v-show="activeForm.hasOwnProperty('activeText')">
+          <el-input v-model="activeForm.activeText">{{activeForm.activeText}}</el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item label="inActiveText" v-show="activeForm.hasOwnProperty('inActiveText')">
+          <el-input v-model="activeForm.inActiveText">{{activeForm.inActiveText}}</el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-form-item label="uploadURL" v-show="activeForm.hasOwnProperty('uploadURL')">
+      <el-input v-model="activeForm.uploadURL">{{activeForm.uploadURL}}</el-input>
+    </el-form-item>
 
     <el-form-item label="Items" v-show="activeForm.hasOwnProperty('items')">
       <li v-for="(item, index) in activeForm.items" :key="index" class="properties__optionslist">

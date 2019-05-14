@@ -15,6 +15,8 @@ import Rating from '@/components/form_elements/FormElementRating'
 import Button from '@/components/form_elements/FormElementButton'
 import TextEditor from '@/components/form_elements/FormElementTextEditor'
 import Carousel from '@/components/form_elements/FormElementCarousel'
+import Upload from '@/components/form_elements/FormElementUpload'
+import ElSwitch from '@/components/form_elements/FormElementSwitch'
 
 import Elements from '@/components/form_elements/Elements'
 import Properties from '@/components/form_elements/Properties'
@@ -41,15 +43,17 @@ export const FormBuilder = new Vue({
     Rating,
     Button,
     TextEditor,
-    Carousel
+    Carousel,
+    Upload,
+    ElSwitch
   },
   data() {
     return {
       fields: [{
-          'name': 'TextInput',
+          'fieldType': 'TextInput',
+          'label': 'Text',
           'text': 'Text',
           'group': 'form', //form group
-          'hasOptions': false,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': true,
@@ -58,10 +62,10 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'LongTextInput',
+          'fieldType': 'LongTextInput',
+          'label': 'Long Text',
           'text': 'Long Text',
           'group': 'form',
-          'hasOptions': false,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': true,
@@ -70,10 +74,10 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'NumberInput',
+          'fieldType': 'NumberInput',
+          'label': 'Number',
           'text': 'Number',
           'group': 'form',
-          'hasOptions': false,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
@@ -82,46 +86,73 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'SelectList',
+          'fieldType': 'SelectList',
+          'label': 'Select',
           'text': 'Select',
           'group': 'form',
-          'hasOptions': true,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
           'isUnique': false,
           'span': 8,
-          'labelWidth': 100
+          'labelWidth': 100,
+          'options': [{
+              optionLabel: "Option Label 1",
+              optionValue: "Option 1"
+            },
+            {
+              optionLabel: "Option Label 2",
+              optionValue: "Option 2"
+            }
+          ]
         },
         {
-          'name': 'RadioButton',
+          'fieldType': 'RadioButton',
+          'label': 'Radio',
           'text': 'Radio',
           'group': 'form',
-          'hasOptions': true,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
           'isUnique': false,
           'span': 8,
-          'labelWidth': 100
+          'labelWidth': 100,
+          'options': [{
+              optionLabel: "Option Label 1",
+              optionValue: "Option 1"
+            },
+            {
+              optionLabel: "Option Label 2",
+              optionValue: "Option 2"
+            }
+          ]
         },
         {
-          'name': 'Checkbox',
+          'fieldType': 'Checkbox',
+          'label': 'Checkbox',
           'text': 'Checkbox',
           'group': 'form',
-          'hasOptions': true,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
           'isUnique': false,
           'span': 8,
-          'labelWidth': 100
+          'labelWidth': 100,
+          'options': [{
+              optionLabel: "Option Label 1",
+              optionValue: "Option 1"
+            },
+            {
+              optionLabel: "Option Label 2",
+              optionValue: "Option 2"
+            }
+          ]
         },
         {
-          'name': 'TimePicker',
+          'fieldType': 'TimePicker',
+          'label': 'Time',
           'text': 'Time Picker',
           'group': 'form',
-          'hasOptions': false,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
@@ -130,10 +161,10 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'DatePicker',
+          'fieldType': 'DatePicker',
+          'label': 'Date Picker',
           'text': 'Date Picker',
           'group': 'form',
-          'hasOptions': false,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
@@ -142,10 +173,10 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'DatetimePicker',
+          'fieldType': 'DatetimePicker',
+          'label': 'Date time',
           'text': 'Date-Time Picker',
           'group': 'form',
-          'hasOptions': false,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
@@ -154,10 +185,10 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'Rating',
+          'fieldType': 'Rating',
+          'label': 'Rating',
           'text': 'Rating',
           'group': 'form',
-          'hasOptions': false,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
@@ -166,10 +197,21 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'Button',
+          'fieldType': 'ElSwitch',
+          'label': 'Switch',
+          'text': 'Switch',
+          'group': 'form',
+          'isUnique': false,
+          'span': 8,
+          'labelWidth': 100,
+          'activeText': '',
+          'inActiveText': ''
+        },
+        {
+          'fieldType': 'Button',
           'text': 'Button',
           'group': 'button',
-          'hasOptions': false,
+          'buttonText': 'Submit your form',
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
@@ -178,10 +220,11 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'TextEditor',
+          'fieldType': 'TextEditor',
+          'label': 'Text Editor',
           'text': 'Text editor',
+          'fieldText': 'Start typing...',
           'group': 'static',
-          'hasOptions': false,
           'isRequired': false,
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': false,
@@ -190,13 +233,9 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'name': 'Carousel',
+          'fieldType': 'Carousel',
           'text': 'Carousel',
           'group': 'static',
-          'hasOptions': false,
-          'isRequired': false,
-          'isHelpBlockVisible': false,
-          'isPlaceholderVisible': false,
           'isUnique': false,
           'span': 24,
           'labelWidth': 100,
@@ -205,6 +244,14 @@ export const FormBuilder = new Vue({
           'items': [{
             url:''
           }]
+        },
+        {
+          'fieldType': 'Upload',
+          'text': 'UploadFiles',
+          'group': 'static',
+          'isUnique': false,
+          'span': 24,
+          'uploadURL': 'https://jsonplaceholder.typicode.com/posts/'
         }
       ],
 
