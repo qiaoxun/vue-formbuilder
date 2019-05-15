@@ -127,6 +127,49 @@
         From Ajax
       </el-button>
     </el-form-item>
+
+    <el-form-item label="Table Columns" v-show="activeForm.fieldType === 'TableComponent'">
+      <ul class="properties__optionsul">
+        <li class="properties__optionslist">
+          <el-row :gutter="5">
+            <el-col :span="7">
+              Prop
+            </el-col>
+            <el-col :span="7">
+              Label
+            </el-col>
+            <el-col :span="7">
+              Width
+            </el-col>
+            <el-col :span="3">
+            </el-col>
+          </el-row>
+        </li>
+        <li v-for="(column, index) in activeForm.tableColumns" :key="index" class="properties__optionslist">
+          <el-row :gutter="5">
+            <el-col :span="7">
+              <el-input v-model="column.prop">{{column.prop}}</el-input>
+            </el-col>
+            <el-col :span="7">
+              <el-input v-model="column.label">{{column.label}}</el-input>
+            </el-col>
+            <el-col :span="7">
+              <el-input @change="columnWidth" v-model="column.width">{{column.width}}</el-input>
+            </el-col>
+            <el-col :span="3">
+              <el-button @click="deleteColumn(activeForm.tableColumns, index, column.prop)" v-show="activeForm.tableColumns.length > 1">
+                <i class="el-icon-error"></i>
+              </el-button>
+            </el-col>
+          </el-row>
+        </li>
+      </ul>
+      <el-button type="text" @click="addColumn(activeForm.tableColumns)">
+        <i class="el-icon-plus"></i>
+        Add more
+      </el-button>
+    </el-form-item>
+
   </el-form>
 </div>
 </template>
@@ -161,6 +204,22 @@ export default {
     },
     addItem(item) {
       item.push({url: ''});
+    },
+    deleteColumn(column, index, prop) {
+      console.log('column', column)
+      this.$delete(column, index)
+    },
+    addColumn(tableColumns) {
+      tableColumns.push({
+        prop: '',
+        label: '',
+        width: 180
+      });
+    },
+    columnWidth(value) {
+      if (value && isNaN(value)){
+        this.$message.error('Column width should be a number!');
+      }
     }
   }
 }

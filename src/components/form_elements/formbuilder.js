@@ -17,14 +17,12 @@ import TextEditor from '@/components/form_elements/FormElementTextEditor'
 import Carousel from '@/components/form_elements/FormElementCarousel'
 import Upload from '@/components/form_elements/FormElementUpload'
 import ElSwitch from '@/components/form_elements/FormElementSwitch'
+import TableComponent from '@/components/form_elements/FormElementTable'
 
 import Elements from '@/components/form_elements/Elements'
 import Properties from '@/components/form_elements/Properties'
 
-import _ from 'vue-lodash';
-
 import vm from '@/main'
-
 
 export const FormBuilder = new Vue({
   components: {
@@ -45,7 +43,8 @@ export const FormBuilder = new Vue({
     TextEditor,
     Carousel,
     Upload,
-    ElSwitch
+    ElSwitch,
+    TableComponent
   },
   data() {
     return {
@@ -248,10 +247,36 @@ export const FormBuilder = new Vue({
         {
           'fieldType': 'Upload',
           'text': 'UploadFiles',
-          'group': 'static',
+          'group': 'form',
           'isUnique': false,
           'span': 24,
           'uploadURL': 'https://jsonplaceholder.typicode.com/posts/'
+        },
+        {
+          'fieldType': 'TableComponent',
+          'text': 'Table',
+          'group': 'form',
+          'isUnique': false,
+          'span': 24,
+          'tableColumns': [{
+            prop: 'date',
+            label: 'Date',
+            width: 180
+          }, {
+            prop: 'name',
+            label: 'Name',
+            width: 180
+          }, {
+            prop: 'address',
+            label: 'Address'
+          }],
+          'tableDatas':  [{
+            id: 1,
+            edit: false,
+            date: '2016-05-03',
+            name: 'Tom',
+            address: 'No. 189, Grove St, Los Angeles'
+          }]
         }
       ],
 
