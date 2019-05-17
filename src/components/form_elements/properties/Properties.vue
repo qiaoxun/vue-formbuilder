@@ -122,10 +122,6 @@
         <i class="el-icon-plus"></i>
         Add more
       </el-button>
-      <el-button type="text" @click="addOption(activeForm.options)">
-        <i class="el-icon-plus"></i>
-        From Ajax
-      </el-button>
     </el-form-item>
 
     <el-form-item label="Table Columns" v-show="activeForm.fieldType === 'TableComponent'">
@@ -170,25 +166,34 @@
       </el-button>
     </el-form-item>
 
+    <el-button v-show="activeForm.hasOwnProperty('advancedOptions')" size="mini" @click="advancedPropsVisible = true" style="width: 100%;" type="success">Advanced Options</el-button>
+    <el-dialog :close-on-click-modal="false" title="Advanced Options" :visible.sync="advancedPropsVisible">
+      <rating-advanced-props v-if="activeForm.fieldType === 'Rating'"></rating-advanced-props>
+      <text-input-advanced-props v-if="activeForm.fieldType === 'TextInput'"></text-input-advanced-props>
+    </el-dialog>
+
   </el-form>
 </div>
 </template>
 
 <script>
-import axios_fetch from '@/api/index';
+import RatingAdvancedProps from './RatingAdvancedProps'
+import TextInputAdvancedProps from './TextInputAdvancedProps.vue'
 
 export default {
   name: 'Properties',
+  components: { RatingAdvancedProps, TextInputAdvancedProps },
   store: ['activeForm'], // Get the form data from Home
   data() {
     return {
       labelPosition: 'top',
       fieldProperties: {},
-      rules: {}
+      rules: {},
+      advancedPropsVisible: false
     }
   },
   mounted() {
-    console.log("activeform11 ->", this.activeForm)
+    console.log("activeform ->", this.activeForm)
     console.log("activeForm.hasOwnProperty('span') ->", this.activeForm.hasOwnProperty('span'))
   },
   methods: {
@@ -206,8 +211,10 @@ export default {
       item.push({url: ''});
     },
     deleteColumn(column, index, prop) {
-      console.log('column', column)
       this.$delete(column, index)
+      this.activeForm.tableDatas.forEach(function(ele) {
+        delete ele[prop];
+      })
     },
     addColumn(tableColumns) {
       tableColumns.push({

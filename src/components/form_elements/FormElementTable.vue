@@ -45,14 +45,17 @@ export default {
       this.multipleSelection = [];
     },
     handleAdd() {
+      var columns = this.currentField.tableColumns;
       let newEle = {
         id: new Date().getTime(),
-        edit: true,
-        date: '',
-        name: '',
-        address: ''
+        edit: true
       }
-      this.currentField.tableDatas.push (newEle);
+
+      columns.forEach(function(ele) {
+        newEle[ele.prop] = '';
+      });
+
+      this.currentField.tableDatas.push(newEle);
     },
     handleSelectionChange(val) {
       this.multipleSelection = val;

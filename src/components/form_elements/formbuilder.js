@@ -20,7 +20,7 @@ import ElSwitch from '@/components/form_elements/FormElementSwitch'
 import TableComponent from '@/components/form_elements/FormElementTable'
 
 import Elements from '@/components/form_elements/Elements'
-import Properties from '@/components/form_elements/Properties'
+import Properties from '@/components/form_elements/properties/Properties'
 
 import vm from '@/main'
 
@@ -58,7 +58,16 @@ export const FormBuilder = new Vue({
           'isPlaceholderVisible': true,
           'isUnique': false,
           'span': 8,
-          'labelWidth': 100
+          'labelWidth': 100,
+          'advancedOptions': {
+            showPassword: false,
+            disabled: false,
+            clearable: false,
+            prepend: '',
+            append: '',
+            maxlength: 10,
+            showWordLimit: false
+          }
         },
         {
           'fieldType': 'LongTextInput',
@@ -69,7 +78,7 @@ export const FormBuilder = new Vue({
           'isHelpBlockVisible': false,
           'isPlaceholderVisible': true,
           'isUnique': false,
-          'span': 8,
+          'span': 24,
           'labelWidth': 100
         },
         {
@@ -193,7 +202,16 @@ export const FormBuilder = new Vue({
           'isPlaceholderVisible': false,
           'isUnique': false,
           'span': 8,
-          'labelWidth': 100
+          'labelWidth': 100,
+          'advancedOptions': {
+            rateValue: 0,
+            showText: true,
+            disabled: false,
+            showScore: false,
+            scoreUnit: 'points',
+            colors: ['#AAAAAA', '#F7BA2A', '#FF9900'],
+            texts: ['oops', 'disappointed', 'normal', 'good', 'great']
+          }
         },
         {
           'fieldType': 'ElSwitch',
