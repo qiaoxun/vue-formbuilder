@@ -69,14 +69,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.properties__optionslist {
-    margin-bottom: 5px;
-    list-style: none;
-    list-style-type: none;
-}
-.properties__optionsul {
-    padding: 0;
-}
-</style>

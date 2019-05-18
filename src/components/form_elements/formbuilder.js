@@ -91,7 +91,16 @@ export const FormBuilder = new Vue({
           'isPlaceholderVisible': false,
           'isUnique': false,
           'span': 8,
-          'labelWidth': 100
+          'labelWidth': 100,
+          'advancedOptions': {
+            disabled: false,
+            stepStrictly: false,
+            step: 1,
+            hasMinValue: false,
+            min: 1,
+            hasMaxValue: false,
+            max: 10,
+          }
         },
         {
           'fieldType': 'SelectList',
@@ -104,6 +113,7 @@ export const FormBuilder = new Vue({
           'isUnique': false,
           'span': 8,
           'labelWidth': 100,
+          'isFromUrl': false,
           'options': [{
               optionLabel: "Option Label 1",
               optionValue: "Option 1"
@@ -112,7 +122,12 @@ export const FormBuilder = new Vue({
               optionLabel: "Option Label 2",
               optionValue: "Option 2"
             }
-          ]
+          ],
+          advancedOptions: {
+            dataUrl: '',
+            labelField: 'label',
+            valueField: 'value'
+          }
         },
         {
           'fieldType': 'RadioButton',
@@ -125,6 +140,7 @@ export const FormBuilder = new Vue({
           'isUnique': false,
           'span': 8,
           'labelWidth': 100,
+          'isFromUrl': false,
           'options': [{
               optionLabel: "Option Label 1",
               optionValue: "Option 1"
@@ -133,7 +149,12 @@ export const FormBuilder = new Vue({
               optionLabel: "Option Label 2",
               optionValue: "Option 2"
             }
-          ]
+          ],
+          advancedOptions: {
+            dataUrl: '',
+            labelField: 'label',
+            valueField: 'value'
+          }
         },
         {
           'fieldType': 'Checkbox',
@@ -146,6 +167,7 @@ export const FormBuilder = new Vue({
           'isUnique': false,
           'span': 8,
           'labelWidth': 100,
+          'isFromUrl': false,
           'options': [{
               optionLabel: "Option Label 1",
               optionValue: "Option 1"
@@ -154,12 +176,17 @@ export const FormBuilder = new Vue({
               optionLabel: "Option Label 2",
               optionValue: "Option 2"
             }
-          ]
+          ],
+          advancedOptions: {
+            dataUrl: '',
+            labelField: 'label',
+            valueField: 'value'
+          }
         },
         {
           'fieldType': 'TimePicker',
           'label': 'Time',
-          'text': 'Time Picker',
+          'text': 'Time',
           'group': 'form',
           'isRequired': false,
           'isHelpBlockVisible': false,
@@ -170,8 +197,8 @@ export const FormBuilder = new Vue({
         },
         {
           'fieldType': 'DatePicker',
-          'label': 'Date Picker',
-          'text': 'Date Picker',
+          'label': 'Date',
+          'text': 'Date',
           'group': 'form',
           'isRequired': false,
           'isHelpBlockVisible': false,
@@ -183,7 +210,7 @@ export const FormBuilder = new Vue({
         {
           'fieldType': 'DatetimePicker',
           'label': 'Date time',
-          'text': 'Date-Time Picker',
+          'text': 'Date-Time',
           'group': 'form',
           'isRequired': false,
           'isHelpBlockVisible': false,

@@ -35,7 +35,7 @@
 
     </el-main>
 
-    <el-aside class="wrapper--sidebar" width="450px">
+    <el-aside class="wrapper--sidebar" width="30%">
       <el-tabs type="border-card" v-model="activeTabForFields">
         <el-tab-pane name="elements" label="Elements">
           <elements />

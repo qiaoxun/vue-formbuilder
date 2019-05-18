@@ -1,18 +1,18 @@
 <template>
 <div class="el-tabs__inner">
   <el-form :model="fieldProperties" :rules="rules" :label-position="labelPosition" ref="fieldProperties">
-		<el-row>
-			<el-col :span="12">
-				<el-form-item label="Label Name" v-show="activeForm.hasOwnProperty('label')">
-					<el-input v-model="activeForm.label">{{activeForm.label}}</el-input>
-				</el-form-item>
-			</el-col>
-			<el-col :span="12">
-				<el-form-item label="Label Width - px" v-show="activeForm.hasOwnProperty('label')">
-					<el-input-number v-model="activeForm.labelWidth" :min="30" :max="1000" controls-position="right"></el-input-number>
-				</el-form-item>
-			</el-col>
-		</el-row>
+    <el-row>
+      <el-col :span="12">
+        <el-form-item label="Label Name" v-show="activeForm.hasOwnProperty('label')">
+          <el-input v-model="activeForm.label">{{activeForm.label}}</el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item label="Label Width - px" v-show="activeForm.hasOwnProperty('label')">
+          <el-input-number v-model="activeForm.labelWidth" :min="30" :max="1000" controls-position="right"></el-input-number>
+        </el-form-item>
+      </el-col>
+    </el-row>
 
     <el-form-item label="Height - px" v-show="activeForm.hasOwnProperty('fieldType') && activeForm['fieldType'] == 'Carousel'">
       <el-input-number v-model="activeForm.controlHeight" controls-position="right"></el-input-number>
@@ -20,15 +20,30 @@
 
     <!-- Show only when 'isPlacehodlerVisible' key exist -->
     <el-form-item label="Placeholder" v-show="activeForm.hasOwnProperty('isPlaceholderVisible')">
-      <el-switch v-model="activeForm.isPlaceholderVisible"></el-switch>
-      <el-input v-show="activeForm.isPlaceholderVisible" v-model="activeForm.placeholder">
-        {{activeForm.placeholder}}
-      </el-input>
+      <el-row>
+        <el-col :span="5">
+          <el-switch v-model="activeForm.isPlaceholderVisible"></el-switch>
+        </el-col>
+        <el-col :span="19 ">
+          <el-input v-show="activeForm.isPlaceholderVisible" v-model="activeForm.placeholder">
+            {{activeForm.placeholder}}
+          </el-input>
+        </el-col>
+      </el-row>
     </el-form-item>
 
-    <el-form-item label="Layout - Max value is 24" v-show="activeForm.hasOwnProperty('span')">
-      <el-input-number v-model="activeForm.span" :min="1" :max="24" controls-position="right"></el-input-number>
-    </el-form-item>
+    <el-row>
+      <el-col :span="12">
+        <el-form-item label="Required field?" v-show="activeForm.hasOwnProperty('isRequired')">
+          <el-switch v-model="activeForm.isRequired"></el-switch>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item label="Layout - Max value is 24" v-show="activeForm.hasOwnProperty('span')">
+          <el-input-number v-model="activeForm.span" :min="1" :max="24" controls-position="right"></el-input-number>
+        </el-form-item>
+      </el-col>
+    </el-row>
 
     <el-form-item label="Button text" v-show="activeForm.hasOwnProperty('buttonText')">
       <el-input v-model="activeForm.buttonText">
@@ -42,9 +57,6 @@
       </el-input>
     </el-form-item>
 
-    <el-form-item label="Required field?" v-show="activeForm.hasOwnProperty('isRequired')">
-      <el-switch v-model="activeForm.isRequired"></el-switch>
-    </el-form-item>
 
     <!-- <el-form-item label="Helpblock" v-show="activeForm.hasOwnProperty('isHelpBlockVisible')">
       <el-switch v-model="activeForm.isHelpBlockVisible"></el-switch>
@@ -54,12 +66,12 @@
     </el-form-item> -->
     <el-row>
       <el-col :span="12">
-        <el-form-item label="activeText" v-show="activeForm.hasOwnProperty('activeText')">
+        <el-form-item label="Active Text" v-show="activeForm.hasOwnProperty('activeText')">
           <el-input v-model="activeForm.activeText">{{activeForm.activeText}}</el-input>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item label="inActiveText" v-show="activeForm.hasOwnProperty('inActiveText')">
+        <el-form-item label="Inactive Text" v-show="activeForm.hasOwnProperty('inActiveText')">
           <el-input v-model="activeForm.inActiveText">{{activeForm.inActiveText}}</el-input>
         </el-form-item>
       </el-col>
@@ -88,15 +100,15 @@
       </el-button>
     </el-form-item>
 
-    <el-form-item label="Options" v-show="activeForm.options">
+    <el-form-item label="Options" v-if="!activeForm.isFromUrl && activeForm.options">
       <ul class="properties__optionsul">
         <li class="properties__optionslist">
           <el-row :gutter="5">
             <el-col :span="10">
-              Value
+              Label
             </el-col>
             <el-col :span="10">
-              Text
+              Value
             </el-col>
             <el-col :span="4">
             </el-col>
@@ -170,11 +182,15 @@
       <el-input :rows="10" type="textarea" v-model="activeForm.htmlContent">{{activeForm.htmlContent}}</el-input>
     </el-form-item>
 
-    <el-button v-show="activeForm.hasOwnProperty('advancedOptions')" size="mini" @click="advancedPropsVisible = true" style="width: 100%;" type="success">Advanced Options</el-button>
+    <el-button v-show="activeForm.hasOwnProperty('advancedOptions')" size="mini" @click="advancedPropsVisible = true" style="width: 100%;" type="success">
+      Advanced Options
+    </el-button>
     <el-dialog :close-on-click-modal="false" title="Advanced Options" :visible.sync="advancedPropsVisible">
       <rating-advanced-props v-if="activeForm.fieldType === 'Rating'"></rating-advanced-props>
       <text-input-advanced-props v-if="activeForm.fieldType === 'TextInput'"></text-input-advanced-props>
       <html-advanced-props v-if="activeForm.fieldType === 'HtmlComponent'"></html-advanced-props>
+      <number-input-advanced-props v-if="activeForm.fieldType === 'NumberInput'"></number-input-advanced-props>
+      <options-advanced-props v-if="activeForm.fieldType === 'SelectList' || activeForm.fieldType === 'RadioButton' || activeForm.fieldType === 'Checkbox'"></options-advanced-props>
     </el-dialog>
 
   </el-form>
@@ -185,10 +201,18 @@
 import RatingAdvancedProps from './RatingAdvancedProps'
 import TextInputAdvancedProps from './TextInputAdvancedProps.vue'
 import HtmlAdvancedProps from './HtmlAdvancedProps.vue'
+import NumberInputAdvancedProps from './NumberInputAdvancedProps.vue'
+import OptionsAdvancedProps from './OptionsAdvancedProps.vue'
 
 export default {
   name: 'Properties',
-  components: { RatingAdvancedProps, TextInputAdvancedProps, HtmlAdvancedProps },
+  components: {
+    RatingAdvancedProps,
+    TextInputAdvancedProps,
+    HtmlAdvancedProps,
+    NumberInputAdvancedProps,
+    OptionsAdvancedProps
+  },
   store: ['activeForm'], // Get the form data from Home
   data() {
     return {
@@ -214,7 +238,9 @@ export default {
       })
     },
     addItem(item) {
-      item.push({url: ''});
+      item.push({
+        url: ''
+      });
     },
     deleteColumn(column, index, prop) {
       this.$delete(column, index)
@@ -230,7 +256,7 @@ export default {
       });
     },
     columnWidth(value) {
-      if (value && isNaN(value)){
+      if (value && isNaN(value)) {
         this.$message.error('Column width should be a number!');
       }
     }
@@ -245,6 +271,6 @@ export default {
     list-style-type: none;
 }
 .properties__optionsul {
-  padding: 0px;
+    padding: 0;
 }
 </style>

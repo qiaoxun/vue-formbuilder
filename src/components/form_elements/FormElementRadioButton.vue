@@ -3,8 +3,8 @@
     <el-radio v-model="radio"
     			    v-for="(item, index) in currentField.options"
         		  :key="item.optionValue"
-        		  :label="item.optionLabel">
-      {{ item.optionValue }}
+        		  :label="item.optionValue"
+              :disabled="item.disabled">
      </el-radio>
   </el-form-item>
 </template>
@@ -18,6 +18,19 @@
     	return {
     		radio: '1'
     	}
+    },
+    mounted() {
+      if (this.currentField.isFromUrl) {
+
+        let dataUrl = this.currentField.advancedOptions.dataUrl;
+        let valueField = this.currentField.advancedOptions.valueField;
+        let labelField = this.currentField.advancedOptions.labelField;
+
+        let promise = fetchData.fetchOptionsData(dataUrl, labelField, valueField);
+        promise.then((data) => {
+          this.currentField.options = data;
+        });
+      }
     }
   }
 </script>

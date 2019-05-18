@@ -80,6 +80,14 @@ body {
 	}
 }
 
+.el-input-number {
+    width: auto !important;
+}
+
+.el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: auto !important;
+}
+
 // Preview
 .preview__wrapper {
 	max-width: 600px;
