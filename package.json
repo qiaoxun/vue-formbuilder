@@ -11,12 +11,10 @@
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.8.2",
-    "medium-editor": "^5.23.3",
     "vue": "^2.6.10",
     "vue-lodash": "^2.0.2",
     "vue-router": "^3.0.3",
     "vue-stash": "^2.0.1-beta",
-    "vue2-medium-editor": "^1.1.6",
     "vuedraggable": "^2.20.0"
   },
   "devDependencies": {

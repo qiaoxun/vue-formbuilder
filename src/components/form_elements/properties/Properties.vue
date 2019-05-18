@@ -166,10 +166,15 @@
       </el-button>
     </el-form-item>
 
+    <el-form-item label="Html Content" v-show="activeForm.hasOwnProperty('htmlContent')">
+      <el-input :rows="10" type="textarea" v-model="activeForm.htmlContent">{{activeForm.htmlContent}}</el-input>
+    </el-form-item>
+
     <el-button v-show="activeForm.hasOwnProperty('advancedOptions')" size="mini" @click="advancedPropsVisible = true" style="width: 100%;" type="success">Advanced Options</el-button>
     <el-dialog :close-on-click-modal="false" title="Advanced Options" :visible.sync="advancedPropsVisible">
       <rating-advanced-props v-if="activeForm.fieldType === 'Rating'"></rating-advanced-props>
       <text-input-advanced-props v-if="activeForm.fieldType === 'TextInput'"></text-input-advanced-props>
+      <html-advanced-props v-if="activeForm.fieldType === 'HtmlComponent'"></html-advanced-props>
     </el-dialog>
 
   </el-form>
@@ -179,10 +184,11 @@
 <script>
 import RatingAdvancedProps from './RatingAdvancedProps'
 import TextInputAdvancedProps from './TextInputAdvancedProps.vue'
+import HtmlAdvancedProps from './HtmlAdvancedProps.vue'
 
 export default {
   name: 'Properties',
-  components: { RatingAdvancedProps, TextInputAdvancedProps },
+  components: { RatingAdvancedProps, TextInputAdvancedProps, HtmlAdvancedProps },
   store: ['activeForm'], // Get the form data from Home
   data() {
     return {

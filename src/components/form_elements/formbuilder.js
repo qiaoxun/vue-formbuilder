@@ -13,11 +13,11 @@ import DatePicker from '@/components/form_elements/FormElementDatePicker'
 import DatetimePicker from '@/components/form_elements/FormElementDatetimePicker'
 import Rating from '@/components/form_elements/FormElementRating'
 import Button from '@/components/form_elements/FormElementButton'
-import TextEditor from '@/components/form_elements/FormElementTextEditor'
 import Carousel from '@/components/form_elements/FormElementCarousel'
 import Upload from '@/components/form_elements/FormElementUpload'
 import ElSwitch from '@/components/form_elements/FormElementSwitch'
 import TableComponent from '@/components/form_elements/FormElementTable'
+import HtmlComponent from '@/components/form_elements/FormElementHtml'
 
 import Elements from '@/components/form_elements/Elements'
 import Properties from '@/components/form_elements/properties/Properties'
@@ -40,11 +40,11 @@ export const FormBuilder = new Vue({
     DatetimePicker,
     Rating,
     Button,
-    TextEditor,
     Carousel,
     Upload,
     ElSwitch,
-    TableComponent
+    TableComponent,
+    HtmlComponent
   },
   data() {
     return {
@@ -237,19 +237,6 @@ export const FormBuilder = new Vue({
           'labelWidth': 100
         },
         {
-          'fieldType': 'TextEditor',
-          'label': 'Text Editor',
-          'text': 'Text editor',
-          'fieldText': 'Start typing...',
-          'group': 'static',
-          'isRequired': false,
-          'isHelpBlockVisible': false,
-          'isPlaceholderVisible': false,
-          'isUnique': false,
-          'span': 8,
-          'labelWidth': 100
-        },
-        {
           'fieldType': 'Carousel',
           'text': 'Carousel',
           'group': 'static',
@@ -295,6 +282,15 @@ export const FormBuilder = new Vue({
             name: 'Tom',
             address: 'No. 189, Grove St, Los Angeles'
           }]
+        },
+        {
+          'fieldType': 'HtmlComponent',
+          'text': 'Html',
+          'group': 'static',
+          'isUnique': false,
+          'span': 24,
+          'htmlContent': '<h3>Hello World</h3>',
+          'advancedOptions': ''
         }
       ],
 
