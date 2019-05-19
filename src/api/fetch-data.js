@@ -4,9 +4,8 @@ export default {
 	getJsonData(url, params){
 		return fetch(url, params);
 	},
-	fetchOptionsData(url, labelField, valueField) {
-		let promise = fetch(url);
-		let promise2 = promise.then((data) => {
+	fetchOptionsData(url, labelField, valueField, params) {
+		let promise = fetch(url, params).then((data) => {
 			if (data && data.length > 0) {
 				let options = [];
 				data.forEach((ele) => {
@@ -19,6 +18,6 @@ export default {
 				return options;
 			}
 		});
-		return promise2;
+		return promise;
 	}
 }

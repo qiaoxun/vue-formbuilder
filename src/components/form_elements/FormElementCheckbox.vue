@@ -1,14 +1,14 @@
 <template>
 <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
   <el-checkbox-group v-model="checkList">
-    <el-checkbox v-for="(item, index) in currentField.options" :key="item.optionValue" :label="item.optionLabel" :disabled="item.disabled">
+    <el-checkbox v-for="item in currentField.options" :key="item.optionValue" :label="item.optionLabel" :disabled="item.disabled">
     </el-checkbox>
   </el-checkbox-group>
 </el-form-item>
 </template>
 
-
 <script>
+import fetchData from '@/api/fetch-data';
 export default {
   name: 'Checkbox',
   props: ['currentField'],
@@ -33,6 +33,6 @@ export default {
 
 <style>
 .el-checkbox-group {
-    font-size: 14px;
+  font-size: 14px;
 }
 </style>

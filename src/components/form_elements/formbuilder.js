@@ -114,6 +114,7 @@ export const FormBuilder = new Vue({
           'span': 8,
           'labelWidth': 100,
           'isFromUrl': false,
+          'dataUrl': '',
           'options': [{
               optionLabel: "Option Label 1",
               optionValue: "Option 1"
@@ -126,7 +127,12 @@ export const FormBuilder = new Vue({
           advancedOptions: {
             dataUrl: '',
             labelField: 'label',
-            valueField: 'value'
+            valueField: 'value',
+            disabled: false,
+            clearable: false,
+            multiple: false,
+            filterable: false,
+            remote: false
           }
         },
         {

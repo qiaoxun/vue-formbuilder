@@ -186,11 +186,17 @@
       Advanced Options
     </el-button>
     <el-dialog :close-on-click-modal="false" title="Advanced Options" :visible.sync="advancedPropsVisible">
-      <rating-advanced-props v-if="activeForm.fieldType === 'Rating'"></rating-advanced-props>
-      <text-input-advanced-props v-if="activeForm.fieldType === 'TextInput'"></text-input-advanced-props>
-      <html-advanced-props v-if="activeForm.fieldType === 'HtmlComponent'"></html-advanced-props>
-      <number-input-advanced-props v-if="activeForm.fieldType === 'NumberInput'"></number-input-advanced-props>
-      <options-advanced-props v-if="activeForm.fieldType === 'SelectList' || activeForm.fieldType === 'RadioButton' || activeForm.fieldType === 'Checkbox'"></options-advanced-props>
+      <el-form ref="OptionsForm" :model="activeForm" :rules="dialogRules">
+        <rating-advanced-props v-if="activeForm.fieldType === 'Rating'"></rating-advanced-props>
+        <text-input-advanced-props v-if="activeForm.fieldType === 'TextInput'"></text-input-advanced-props>
+        <html-advanced-props v-if="activeForm.fieldType === 'HtmlComponent'"></html-advanced-props>
+        <number-input-advanced-props v-if="activeForm.fieldType === 'NumberInput'"></number-input-advanced-props>
+        <select-list-advanced-props v-if="activeForm.fieldType === 'SelectList'"></select-list-advanced-props>
+        <options-advanced-props v-if="activeForm.fieldType === 'RadioButton' || activeForm.fieldType === 'Checkbox'"></options-advanced-props>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="confirmForm">Confirm</el-button>
+      </div>
     </el-dialog>
 
   </el-form>
@@ -203,6 +209,7 @@ import TextInputAdvancedProps from './TextInputAdvancedProps.vue'
 import HtmlAdvancedProps from './HtmlAdvancedProps.vue'
 import NumberInputAdvancedProps from './NumberInputAdvancedProps.vue'
 import OptionsAdvancedProps from './OptionsAdvancedProps.vue'
+import SelectListAdvancedProps from './SelectListAdvancedProps.vue'
 
 export default {
   name: 'Properties',
@@ -211,7 +218,8 @@ export default {
     TextInputAdvancedProps,
     HtmlAdvancedProps,
     NumberInputAdvancedProps,
-    OptionsAdvancedProps
+    OptionsAdvancedProps,
+    SelectListAdvancedProps
   },
   store: ['activeForm'], // Get the form data from Home
   data() {
@@ -219,7 +227,12 @@ export default {
       labelPosition: 'top',
       fieldProperties: {},
       rules: {},
-      advancedPropsVisible: false
+      advancedPropsVisible: false,
+      dialogRules: {
+        dataUrl: [
+           { required: true, message: 'Please input url', trigger: 'change' }
+        ]
+      }
     }
   },
   mounted() {
@@ -259,6 +272,16 @@ export default {
       if (value && isNaN(value)) {
         this.$message.error('Column width should be a number!');
       }
+    },
+    confirmForm() {
+      this.$refs['OptionsForm'].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
     }
   }
 }
