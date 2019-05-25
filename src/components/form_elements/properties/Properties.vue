@@ -186,7 +186,7 @@
       Advanced Options
     </el-button>
     <el-dialog :close-on-click-modal="false" title="Advanced Options" :visible.sync="advancedPropsVisible">
-      <el-form ref="OptionsForm" :model="activeForm" :rules="dialogRules">
+      <el-form ref="OptionsForm"  :rules="dialogRules">
         <rating-advanced-props v-if="activeForm.fieldType === 'Rating'"></rating-advanced-props>
         <text-input-advanced-props v-if="activeForm.fieldType === 'TextInput'"></text-input-advanced-props>
         <html-advanced-props v-if="activeForm.fieldType === 'HtmlComponent'"></html-advanced-props>

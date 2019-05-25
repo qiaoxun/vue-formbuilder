@@ -1,8 +1,8 @@
 <template>
-  <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
+  <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'" :required="this.currentField.isRequired">
     <el-input v-model="input" v-bind="attributesBinding">
-      <template v-if="currentField.advancedOptions.prepend !== ''" slot="prepend">{{ currentField.advancedOptions.prepend }}</template>
-      <template v-if="currentField.advancedOptions.append !== ''" slot="append">{{ currentField.advancedOptions.append }}</template>
+      <template v-if="currentField.prepend !== ''" slot="prepend">{{ currentField.prepend }}</template>
+      <template v-if="currentField.append !== ''" slot="append">{{ currentField.append }}</template>
     </el-input>
   </el-form-item>
 </template>
@@ -19,21 +19,21 @@ export default {
   computed: {
     attributesBinding() {
       var attr = {};
-      if (this.currentField.advancedOptions.showWordLimit) {
-        attr.maxlength = this.currentField.advancedOptions.maxlength;
-        attr['show-word-limit'] = this.currentField.advancedOptions.showWordLimit
+      if (this.currentField.showWordLimit) {
+        attr.maxlength = this.currentField.maxlength;
+        attr['show-word-limit'] = this.currentField.showWordLimit
       }
 
-      if (this.currentField.advancedOptions.clearable) {
-        attr.clearable = this.currentField.advancedOptions.clearable;
+      if (this.currentField.clearable) {
+        attr.clearable = this.currentField.clearable;
       }
 
-      if (this.currentField.advancedOptions.disabled) {
-        attr.disabled = this.currentField.advancedOptions.disabled;
+      if (this.currentField.disabled) {
+        attr.disabled = this.currentField.disabled;
       }
 
-      if (this.currentField.advancedOptions.showPassword) {
-        attr['show-password'] = this.currentField.advancedOptions.showPassword;
+      if (this.currentField.showPassword) {
+        attr['show-password'] = this.currentField.showPassword;
       }
 
       if (this.currentField.isPlaceholderVisible) {

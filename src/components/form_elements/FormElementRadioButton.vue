@@ -18,9 +18,9 @@ export default {
   mounted() {
     if (this.currentField.isFromUrl) {
 
-      let dataUrl = this.currentField.advancedOptions.dataUrl;
-      let valueField = this.currentField.advancedOptions.valueField;
-      let labelField = this.currentField.advancedOptions.labelField;
+      let dataUrl = this.currentField.dataUrl;
+      let valueField = this.currentField.valueField;
+      let labelField = this.currentField.labelField;
 
       let promise = fetchData.fetchOptionsData(dataUrl, labelField, valueField);
       promise.then((data) => {

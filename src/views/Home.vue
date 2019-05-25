@@ -78,6 +78,7 @@ export default {
       FormBuilder.cloneElement(index, form)
     },
     editElementProperties(form) {
+      console.log("form ->", this.forms)
       FormBuilder.editElementProperties(form)
     }
   }

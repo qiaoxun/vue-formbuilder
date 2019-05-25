@@ -18,14 +18,14 @@ export default {
   computed: {
     attributesBinding() {
       var attr = {};
-      attr.disabled = this.currentField.advancedOptions.disabled;
-      attr.step = this.currentField.advancedOptions.step;
-      attr['step-strictly'] = this.currentField.advancedOptions.stepStrictly;
-      if (this.currentField.advancedOptions.hasMinValue) {
-        attr.min = this.currentField.advancedOptions.min;
+      attr.disabled = this.currentField.disabled;
+      attr.step = this.currentField.step;
+      attr['step-strictly'] = this.currentField.stepStrictly;
+      if (this.currentField.hasMinValue) {
+        attr.min = this.currentField.min;
       }
-      if (this.currentField.advancedOptions.hasMaxValue) {
-        attr.max = this.currentField.advancedOptions.max;
+      if (this.currentField.hasMaxValue) {
+        attr.max = this.currentField.max;
       }
       return attr;
     }

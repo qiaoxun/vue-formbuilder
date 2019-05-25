@@ -24,9 +24,9 @@ export default {
   mounted() {
     if (this.currentField.isFromUrl) {
 
-      let dataUrl = this.currentField.advancedOptions.dataUrl;
-      let valueField = this.currentField.advancedOptions.valueField;
-      let labelField = this.currentField.advancedOptions.labelField;
+      let dataUrl = this.currentField.dataUrl;
+      let valueField = this.currentField.valueField;
+      let labelField = this.currentField.labelField;
 
       let promise = fetchData.fetchOptionsData(dataUrl, labelField, valueField);
       promise.then((data) => {
@@ -37,11 +37,11 @@ export default {
   computed: {
     attributesBinding() {
       var attr = {};
-      attr.disabled = this.currentField.advancedOptions.disabled;
-      attr.clearable = this.currentField.advancedOptions.clearable;
-      attr.multiple = this.currentField.advancedOptions.multiple;
-      attr.filterable = this.currentField.advancedOptions.filterable;
-      attr.remote = this.currentField.advancedOptions.remote;
+      attr.disabled = this.currentField.disabled;
+      attr.clearable = this.currentField.clearable;
+      attr.multiple = this.currentField.multiple;
+      attr.filterable = this.currentField.filterable;
+      attr.remote = this.currentField.remote;
       if (attr.remote) {
         attr.remoteMethod = this.remoteMethod;
       }
@@ -58,9 +58,9 @@ export default {
     remoteMethod(query) {
       if (query !== '') {
         this.loading = true;
-        let dataUrl = this.currentField.advancedOptions.dataUrl;
-        let valueField = this.currentField.advancedOptions.valueField;
-        let labelField = this.currentField.advancedOptions.labelField;
+        let dataUrl = this.currentField.dataUrl;
+        let valueField = this.currentField.valueField;
+        let labelField = this.currentField.labelField;
         var param = {queryStr: query};
         let promise = fetchData.fetchOptionsData(dataUrl, labelField, valueField, qs.stringify(param));
         promise.then((data) => {
@@ -73,7 +73,7 @@ export default {
     }
   },
   watch: {
-    'currentField.advancedOptions.multiple'() {
+    'currentField.multiple'() {
       this.reload();
     }
   }

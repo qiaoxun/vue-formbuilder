@@ -4,8 +4,8 @@
     <el-col :span="24">
       <el-form-item label="Colors">
         <el-row :gutter="3">
-          <el-col :span="7" v-for="(color, index) in activeForm.advancedOptions.colors" :key="index">
-            <el-input v-model="activeForm.advancedOptions.colors[index]"></el-input>
+          <el-col :span="7" v-for="(color, index) in activeForm.colors" :key="index">
+            <el-input v-model="activeForm.colors[index]"></el-input>
           </el-col>
         </el-row>
       </el-form-item>
@@ -15,22 +15,22 @@
   <el-row>
     <el-col :span="12">
       <el-form-item label="Show Text">
-        <el-switch @change="showTextChange" v-model="activeForm.advancedOptions.showText"></el-switch>
+        <el-switch @change="showTextChange" v-model="activeForm.showText"></el-switch>
       </el-form-item>
     </el-col>
     <el-col :span="12">
       <el-form-item label="Disabled">
-        <el-switch v-model="activeForm.advancedOptions.disabled"></el-switch>
+        <el-switch v-model="activeForm.disabled"></el-switch>
       </el-form-item>
     </el-col>
   </el-row>
 
   <el-row>
     <el-col :span="24">
-      <el-form-item label="Texts" v-show="activeForm.advancedOptions.showText">
+      <el-form-item label="Texts" v-show="activeForm.showText">
         <el-row :gutter="3">
-          <el-col :span="4" v-for="(text, index) in activeForm.advancedOptions.texts" :key="index">
-            <el-input v-model="activeForm.advancedOptions.texts[index]"></el-input>
+          <el-col :span="4" v-for="(text, index) in activeForm.texts" :key="index">
+            <el-input v-model="activeForm.texts[index]"></el-input>
           </el-col>
         </el-row>
       </el-form-item>
@@ -40,12 +40,12 @@
   <el-row>
     <el-col :span="12">
       <el-form-item label="Show Score">
-        <el-switch @change="showScoreChange" v-model="activeForm.advancedOptions.showScore"></el-switch>
+        <el-switch @change="showScoreChange" v-model="activeForm.showScore"></el-switch>
       </el-form-item>
     </el-col>
     <el-col :span="12">
-      <el-form-item label="Score Unit" v-show="activeForm.advancedOptions.showScore">
-        <el-input v-model="activeForm.advancedOptions.scoreUnit"></el-input>
+      <el-form-item label="Score Unit" v-show="activeForm.showScore">
+        <el-input v-model="activeForm.scoreUnit"></el-input>
       </el-form-item>
     </el-col>
   </el-row>
@@ -64,13 +64,13 @@ export default {
   },
   methods: {
     showTextChange(value) {
-      if (value && this.activeForm.advancedOptions.showScore) {
-        this.activeForm.advancedOptions.showScore = false;
+      if (value && this.activeForm.showScore) {
+        this.activeForm.showScore = false;
       }
     },
     showScoreChange(value) {
-      if (value && this.activeForm.advancedOptions.showText) {
-        this.activeForm.advancedOptions.showText = false;
+      if (value && this.activeForm.showText) {
+        this.activeForm.showText = false;
       }
     }
   }

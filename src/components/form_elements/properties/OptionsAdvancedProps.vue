@@ -15,18 +15,18 @@
 
   <el-row v-show="activeForm.isFromUrl">
     <el-col :span="4">
-      <el-form-item label="Fetch Data" v-show="activeForm.advancedOptions.labelField">
+      <el-form-item label="Fetch Data" v-show="activeForm.labelField">
         <el-button type="success" plain @click="fetchData">Fetch Data</el-button>
       </el-form-item>
     </el-col>
     <el-col :span="10">
-      <el-form-item label="Label Field" v-show="activeForm.advancedOptions.labelField">
-        <el-input v-model="activeForm.advancedOptions.labelField"></el-input>
+      <el-form-item label="Label Field" v-show="activeForm.labelField">
+        <el-input v-model="activeForm.labelField"></el-input>
       </el-form-item>
     </el-col>
     <el-col :span="10">
-      <el-form-item label="Value Field" v-show="activeForm.advancedOptions.valueField">
-        <el-input v-model="activeForm.advancedOptions.valueField"></el-input>
+      <el-form-item label="Value Field" v-show="activeForm.valueField">
+        <el-input v-model="activeForm.valueField"></el-input>
       </el-form-item>
     </el-col>
   </el-row>
@@ -41,9 +41,9 @@ export default {
   store: ['activeForm'],
   methods: {
     fetchData() {
-      let dataUrl = this.activeForm.advancedOptions.dataUrl;
-      let valueField = this.activeForm.advancedOptions.valueField;
-      let labelField = this.activeForm.advancedOptions.labelField;
+      let dataUrl = this.activeForm.dataUrl;
+      let valueField = this.activeForm.valueField;
+      let labelField = this.activeForm.labelField;
       if (!dataUrl) {
         this.$message.error('Url can not be empty');
         return;
