@@ -19,7 +19,7 @@
     </el-form-item>
 
     <!-- Show only when 'isPlacehodlerVisible' key exist -->
-    <el-form-item label="Placeholder" v-show="activeForm.hasOwnProperty('isPlaceholderVisible')">
+    <el-form-item label="Placeholder" v-show="activeForm.hasOwnProperty('isPlaceholderVisible') && activeForm['isPlaceholderVisible'] == true">
       <el-row>
         <el-col :span="5">
           <el-switch v-model="activeForm.isPlaceholderVisible"></el-switch>
@@ -182,7 +182,7 @@
       <el-input :rows="10" type="textarea" v-model="activeForm.htmlContent">{{activeForm.htmlContent}}</el-input>
     </el-form-item>
 
-    <el-button v-show="activeForm.hasOwnProperty('advancedOptions')" size="mini" @click="advancedPropsVisible = true" style="width: 100%;" type="success">
+    <el-button v-show="activeForm.hasOwnProperty('advancedOptions')" @click="advancedPropsVisible = true" style="width: 100%;" type="success">
       Advanced Options
     </el-button>
     <el-dialog :close-on-click-modal="false" title="Advanced Options" :visible.sync="advancedPropsVisible">

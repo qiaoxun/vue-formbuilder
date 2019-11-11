@@ -9,7 +9,7 @@
 
     <el-col :span="8">
       <el-form-item label="Step">
-        <el-input-number v-model="activeForm.step"></el-input-number>
+        <el-input-number v-model="activeForm.step" controls-position="right"></el-input-number>
       </el-form-item>
     </el-col>
 
@@ -27,7 +27,7 @@
             <el-switch v-model="activeForm.hasMinValue"></el-switch>
           </el-col>
           <el-col :span="18">
-            <el-input-number v-show="activeForm.hasMinValue" v-model="activeForm.mix"></el-input-number>
+            <el-input-number v-show="activeForm.hasMinValue" v-model="activeForm.mix" controls-position="right"></el-input-number>
           </el-col>
         </el-row>
       </el-form-item>
@@ -39,7 +39,7 @@
             <el-switch v-model="activeForm.hasMaxValue"></el-switch>
           </el-col>
           <el-col :span="18">
-            <el-input-number v-show="activeForm.hasMaxValue" v-model="activeForm.max"></el-input-number>
+            <el-input-number v-show="activeForm.hasMaxValue" v-model="activeForm.max" controls-position="right"></el-input-number>
           </el-col>
         </el-row>
       </el-form-item>
