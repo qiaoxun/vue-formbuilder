@@ -2,7 +2,9 @@
 
 Basic code was clone from https://github.com/jmeei/vue-formbuilder, and did some improve.
 
-![alt text](https://github.com/qiaoxun/vue-formbuilder/blob/master/src/assets/WebPageCapture.png?raw=true)
+![alt text](https://github.com/qiaoxun/vue-formbuilder/blob/master/src/assets/1.gif)
+![alt text](https://github.com/qiaoxun/vue-formbuilder/blob/master/src/assets/2.gif)
+![alt text](https://github.com/qiaoxun/vue-formbuilder/blob/master/src/assets/3.gif)
 
 ## Project setup
 ```

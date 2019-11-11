@@ -50,8 +50,8 @@ export const FormBuilder = new Vue({
     return {
       fields: [{
           fieldType: 'TextInput',
-          label: 'text',
-          text: 'text',
+          label: 'Text',
+          text: 'Text',
           group: 'form', //form group
           isRequired: false,
           isHelpBlockVisible: false,
