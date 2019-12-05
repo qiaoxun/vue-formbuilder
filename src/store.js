@@ -1,5 +1,5 @@
 export default {
 	forms: [],
-	activeForm: [],
+	activeField: [],
 	activeTabForFields: 'elements'
 }

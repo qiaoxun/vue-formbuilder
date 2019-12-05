@@ -342,19 +342,19 @@ export const FormBuilder = new Vue({
     }
   },
   methods: {
-    deleteElement(index) {
-      vm.$store.activeForm = [];
+    deleteElement(index, form) {
+      vm.$store.activeField = [];
       vm.$store.activeTabForFields = "elements";
-      vm.$delete(vm.$store.forms, index);
+      vm.$delete(form, index);
     },
 
-    cloneElement(index, form) {
-      var cloned = _.cloneDeep(form) // clone deep lodash
-      vm.$store.forms.splice(index, 0, cloned)
+    cloneElement(index, field, form) {
+      var cloned = _.cloneDeep(field) // clone deep lodash
+      form.splice(index, 0, cloned)
     },
 
-    editElementProperties(form) {
-      vm.$store.activeForm = form;
+    editElementProperties(field) {
+      vm.$store.activeField = field;
       vm.$store.activeTabForFields = "properties";
     }
   }

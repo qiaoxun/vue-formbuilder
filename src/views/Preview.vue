@@ -3,18 +3,21 @@
   <el-container>
     <el-main :style="cssProps">
       <el-form>
-        <el-row>
-          <div class="wrapper--forms">
-            <el-col v-for="(form, index) in forms" :key="index" :span="form.span" v-bind="form" class="form__group">
-              <!-- <label class="form__label" v-model="form.label" v-show="form.hasOwnProperty('label')">{{ form.label }}</label> -->
-              <component :is="form.fieldType" :currentField="form" class="form__field">
-              </component>
-              <!-- <small class="form__helpblock" v-model="form.helpBlockText" v-show="form.isHelpBlockVisible">
-                {{ form.helpBlockText }}
-              </small> -->
-            </el-col>
-          </div>
-        </el-row>
+        <template v-for="(eachFormObj, eachFormIndex) in forms">
+          <el-divider :key="`divider-${eachFormIndex}`">{{ eachFormObj.title }}</el-divider>
+          <el-row :key="`row-${eachFormIndex}`">
+            <div class="wrapper--forms">
+              <el-col v-for="(field, index) in eachFormObj.fields" :key="index" :span="field.span" v-bind="field" class="form__group">
+                <!-- <label class="form__label" v-model="form.label" v-show="form.hasOwnProperty('label')">{{ form.label }}</label> -->
+                <component :is="field.fieldType" :currentField="field" class="form__field">
+                </component>
+                <!-- <small class="form__helpblock" v-model="form.helpBlockText" v-show="form.isHelpBlockVisible">
+                  {{ form.helpBlockText }}
+                </small> -->
+              </el-col>
+            </div>
+          </el-row>
+        </template>
       </el-form>
     </el-main>
   </el-container>
