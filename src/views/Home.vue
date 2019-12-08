@@ -1,10 +1,17 @@
 <template>
 <div>
   <el-container>
-    <el-main>
+    <el-main class="el-main-left">
       <div class="wrapper--forms">
         <el-form>
-          <el-button @click="addSection">Add Section</el-button>
+          <el-row>
+            <el-button style="margin-bottom: 10px;" type="primary" @click="addSection">Add Section</el-button>
+          </el-row>
+
+          <el-row v-if="forms.length === 0">
+            <div class="empty-section">Please add Sections</div>
+          </el-row>
+
           <template v-for="(eachFormObj, eachFormIndex) in forms">
             <div :key="`div-${eachFormIndex}`" class="section-block">
               <div class="source">
@@ -122,6 +129,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.empty-section {
+  text-align: center;
+  font-size: 40px;
+  background: linear-gradient(to bottom,#FFF,#409EFF);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
 .dragArea {
     margin-left: auto;
     margin-right: auto;
@@ -129,6 +144,10 @@ export default {
     min-height: 10px;
     height: calc(30vh);
     z-index: 2;
+}
+
+.el-main-left {
+  height: calc(90vh);
 }
 
 .form__selectedlabel {

@@ -88,7 +88,7 @@
             <el-input v-model="item.url">{{item.url}}</el-input>
           </el-col>
           <el-col :span="4">
-            <el-button v-show="activeField.items.length > 1">
+            <el-button @click="deleteOption(activeField.items, index)" v-show="activeField.items.length > 1">
               <i class="el-icon-error"></i>
             </el-button>
           </el-col>
