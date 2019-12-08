@@ -6,6 +6,8 @@ Basic code was clone from https://github.com/jmeei/vue-formbuilder, and did some
 ![alt text](https://github.com/qiaoxun/vue-formbuilder/blob/master/src/assets/2.gif)
 ![alt text](https://github.com/qiaoxun/vue-formbuilder/blob/master/src/assets/3.gif)
 
+![alt text](https://github.com/qiaoxun/vue-formbuilder/blob/master/src/assets/4.gif)
+
 ## Project setup
 ```
 npm install
