@@ -1,35 +1,59 @@
 <template>
 <div>
   <el-container>
-    <el-main>
+    <el-main class="el-main-left">
       <div class="wrapper--forms">
         <el-form>
           <el-row>
-            <draggable :list="forms" class="dragArea" :group="{ name:'formbuilder', pull:false, put:true }" :sort="true" ghost-class="sortable__ghost">
-              <!-- The form elements starts (on the right) -->
-              <!-- <div> -->
-              <el-col v-for="(form, index) in forms" :key="index" v-bind="form" :span="form.span" class="form__group" :class="{ 'is--active': form === activeForm }">
-                <span class="form__selectedlabel">{{ form.fieldType }}</span>
-
-                <div @click="editElementProperties(form)">
-                  <!-- <label class="form__label" v-model="form.label" v-show="form.hasOwnProperty('label')">{{ form.label }}</label> -->
-                  <component :is="form.fieldType" :currentField="form" class="form__field">
-                  </component>
-                </div>
-
-                <!-- Actions list -->
-                <div class="form__actiongroup">
-                  <el-button circle size="mini" icon="el-icon-rank" class="form__actionitem--move"></el-button>
-
-                  <el-button-group class="form__actionlist">
-                    <el-button size="mini" icon="el-icon-plus" @click="cloneElement(index, form)" v-show="!form.isUnique"></el-button>
-                    <el-button size="mini" icon="el-icon-delete" @click="deleteElement(index)"></el-button>
-                  </el-button-group>
-                </div>
-              </el-col>
-              <!-- </div> -->
-            </draggable>
+            <el-button style="margin-bottom: 10px;" type="primary" @click="addSection">Add Section</el-button>
           </el-row>
+
+          <el-row v-if="forms.length === 0">
+            <div class="empty-section">Please add Sections</div>
+          </el-row>
+
+          <template v-for="(eachFormObj, eachFormIndex) in forms">
+            <div :key="`div-${eachFormIndex}`" class="section-block">
+              <div class="source">
+                <el-row>
+                  <el-col :span="18">
+                    <el-input placeholder="Please input section title" v-model="eachFormObj.title" style="width: 100%;"></el-input>
+                  </el-col>
+                  <el-col :span="6">
+                    <el-button type="danger" round style="float: right" @click="deleteSection(eachFormIndex, eachFormObj.title)">Delete Section</el-button>
+                  </el-col>
+                </el-row>
+              </div>
+              <div class="meta">
+                <el-row>
+                  <draggable :list="eachFormObj.fields" class="dragArea" :group="{ name:'formbuilder', pull:false, put:true }" :sort="true" ghost-class="sortable__ghost">
+                    <!-- The form elements starts (on the right) -->
+                    <!-- <div> -->
+                    <el-col v-for="(field, index) in eachFormObj.fields" :key="index" v-bind="field" :span="field.span" class="form__group" :class="{ 'is--active': field === activeField }">
+                      <span class="form__selectedlabel">{{ field.fieldType }}</span>
+
+                      <div @click="editElementProperties(field)">
+                        <!-- <label class="form__label" v-model="form.label" v-show="form.hasOwnProperty('label')">{{ form.label }}</label> -->
+                        <component :is="field.fieldType" :currentField="field" class="form__field">
+                        </component>
+                      </div>
+
+                      <!-- Actions list -->
+                      <div class="form__actiongroup">
+                        <el-button circle size="mini" icon="el-icon-rank" class="form__actionitem--move"></el-button>
+
+                        <el-button-group class="form__actionlist">
+                          <el-button size="mini" icon="el-icon-plus" @click="cloneElement(index, field, eachFormObj.fields)" v-show="!field.isUnique"></el-button>
+                          <el-button size="mini" icon="el-icon-delete" @click="deleteElement(index, eachFormObj.fields)"></el-button>
+                        </el-button-group>
+                      </div>
+                    </el-col>
+                    <!-- </div> -->
+                  </draggable>
+                </el-row>
+              </div>
+            </div>
+          </template>
         </el-form>
       </div>
 
@@ -42,11 +66,11 @@
         </el-tab-pane>
 
         <el-tab-pane name="properties" label="Properties">
-          <properties v-show="Object.keys($store.activeForm).length > 0"></properties>
+          <properties v-show="Object.keys($store.activeField).length > 0"></properties>
         </el-tab-pane>
       </el-tabs>
 
-      <!--{{ $store.activeForm }}-->
+      <!--{{ $store.activeField }}-->
     </el-aside>
   </el-container>
 </div>
@@ -59,7 +83,7 @@ import {
 
 export default {
   name: 'Home',
-  store: ['forms', 'activeForm', 'activeTabForFields'],
+  store: ['forms', 'activeField', 'activeTabForFields'],
   data() {
     return {
       sortElementOptions: FormBuilder.$data.sortElementOptions
@@ -67,19 +91,37 @@ export default {
   },
   mounted() {
     console.log("form ->", this.forms)
-    console.log("activeform ->", this.activeForm)
+    console.log("activeField ->", this.activeField)
   },
   components: FormBuilder.$options.components,
   methods: {
-    deleteElement(index) {
-      FormBuilder.deleteElement(index)
+    deleteElement(index, form) {
+      FormBuilder.deleteElement(index, form)
     },
-    cloneElement(index, form) {
-      FormBuilder.cloneElement(index, form)
+    cloneElement(index, field, form) {
+      FormBuilder.cloneElement(index, field, form)
     },
-    editElementProperties(form) {
+    editElementProperties(field) {
       console.log("form ->", this.forms)
-      FormBuilder.editElementProperties(form)
+      console.log("activeField ->", this.activeField)
+      FormBuilder.editElementProperties(field)
+    },
+    addSection() {
+      const formObj = {
+        title: "",
+        fields: []
+      };
+      this.forms.push(formObj);
+    },
+    deleteSection(formIndex, formTitle) {
+      this.$confirm(`Are you sure to delete the section ${formTitle}?`, 'Warning', {
+          confirmButtonText: 'OK',
+          cancelButtonText: 'Cancel',
+          type: 'warning'
+        }).then(() => {
+          this.$delete(this.forms, formIndex);
+        });
+      
     }
   }
 }
@@ -87,13 +129,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.empty-section {
+  text-align: center;
+  font-size: 40px;
+  background: linear-gradient(to bottom,#FFF,#409EFF);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
 .dragArea {
     margin-left: auto;
     margin-right: auto;
     position: relative;
     min-height: 10px;
-    height: calc(60vh);
+    height: calc(30vh);
     z-index: 2;
+}
+
+.el-main-left {
+  height: calc(90vh);
 }
 
 .form__selectedlabel {
@@ -156,4 +210,19 @@ export default {
         }
     }
 }
+
+.section-block {
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+}
+
+.section-block .source {
+    padding: 10px
+}
+
+.section-block .meta {
+    background-color: #fafafa;
+    border-top: 1px solid #eaeefb;
+}
+
 </style>

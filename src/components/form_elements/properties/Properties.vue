@@ -3,30 +3,30 @@
   <el-form :model="fieldProperties" :rules="rules" :label-position="labelPosition" ref="fieldProperties">
     <el-row>
       <el-col :span="12">
-        <el-form-item label="Label Name" v-show="activeForm.hasOwnProperty('label')">
-          <el-input v-model="activeForm.label">{{activeForm.label}}</el-input>
+        <el-form-item label="Label Name" v-show="activeField.hasOwnProperty('label')">
+          <el-input v-model="activeField.label">{{activeField.label}}</el-input>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item label="Label Width - px" v-show="activeForm.hasOwnProperty('label')">
-          <el-input-number v-model="activeForm.labelWidth" :min="30" :max="1000" controls-position="right"></el-input-number>
+        <el-form-item label="Label Width - px" v-show="activeField.hasOwnProperty('label')">
+          <el-input-number v-model="activeField.labelWidth" :min="30" :max="1000" controls-position="right"></el-input-number>
         </el-form-item>
       </el-col>
     </el-row>
 
-    <el-form-item label="Height - px" v-show="activeForm.hasOwnProperty('fieldType') && activeForm['fieldType'] == 'Carousel'">
-      <el-input-number v-model="activeForm.controlHeight" controls-position="right"></el-input-number>
+    <el-form-item label="Height - px" v-show="activeField.hasOwnProperty('fieldType') && activeField['fieldType'] == 'Carousel'">
+      <el-input-number v-model="activeField.controlHeight" controls-position="right"></el-input-number>
     </el-form-item>
 
     <!-- Show only when 'isPlacehodlerVisible' key exist -->
-    <el-form-item label="Placeholder" v-show="activeForm.hasOwnProperty('isPlaceholderVisible') && activeForm['isPlaceholderVisible'] == true">
+    <el-form-item label="Placeholder" v-show="activeField.hasOwnProperty('isPlaceholderVisible') && activeField['isPlaceholderVisible'] == true">
       <el-row>
         <el-col :span="5">
-          <el-switch v-model="activeForm.isPlaceholderVisible"></el-switch>
+          <el-switch v-model="activeField.isPlaceholderVisible"></el-switch>
         </el-col>
         <el-col :span="19 ">
-          <el-input v-show="activeForm.isPlaceholderVisible" v-model="activeForm.placeholder">
-            {{activeForm.placeholder}}
+          <el-input v-show="activeField.isPlaceholderVisible" v-model="activeField.placeholder">
+            {{activeField.placeholder}}
           </el-input>
         </el-col>
       </el-row>
@@ -34,73 +34,73 @@
 
     <el-row>
       <el-col :span="12">
-        <el-form-item label="Required field?" v-show="activeForm.hasOwnProperty('isRequired')">
-          <el-switch v-model="activeForm.isRequired"></el-switch>
+        <el-form-item label="Required field?" v-show="activeField.hasOwnProperty('isRequired')">
+          <el-switch v-model="activeField.isRequired"></el-switch>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item label="Layout - Max value is 24" v-show="activeForm.hasOwnProperty('span')">
-          <el-input-number v-model="activeForm.span" :min="1" :max="24" controls-position="right"></el-input-number>
+        <el-form-item label="Layout - Max value is 24" v-show="activeField.hasOwnProperty('span')">
+          <el-input-number v-model="activeField.span" :min="1" :max="24" controls-position="right"></el-input-number>
         </el-form-item>
       </el-col>
     </el-row>
 
-    <el-form-item label="Button text" v-show="activeForm.hasOwnProperty('buttonText')">
-      <el-input v-model="activeForm.buttonText">
-        {{activeForm.buttonText}}
+    <el-form-item label="Button text" v-show="activeField.hasOwnProperty('buttonText')">
+      <el-input v-model="activeField.buttonText">
+        {{activeField.buttonText}}
       </el-input>
     </el-form-item>
 
-    <el-form-item label="Code view" v-show="activeForm.hasOwnProperty('fieldText')">
-      <el-input v-model="activeForm.fieldText" type="textarea" :rows="10">
-        {{activeForm.fieldText}}
+    <el-form-item label="Code view" v-show="activeField.hasOwnProperty('fieldText')">
+      <el-input v-model="activeField.fieldText" type="textarea" :rows="10">
+        {{activeField.fieldText}}
       </el-input>
     </el-form-item>
 
 
-    <!-- <el-form-item label="Helpblock" v-show="activeForm.hasOwnProperty('isHelpBlockVisible')">
-      <el-switch v-model="activeForm.isHelpBlockVisible"></el-switch>
-      <el-input v-show="activeForm.isHelpBlockVisible" v-model="activeForm.helpBlockText">
-        {{activeForm.helpBlockText}}
+    <!-- <el-form-item label="Helpblock" v-show="activeField.hasOwnProperty('isHelpBlockVisible')">
+      <el-switch v-model="activeField.isHelpBlockVisible"></el-switch>
+      <el-input v-show="activeField.isHelpBlockVisible" v-model="activeField.helpBlockText">
+        {{activeField.helpBlockText}}
       </el-input>
     </el-form-item> -->
     <el-row>
       <el-col :span="12">
-        <el-form-item label="Active Text" v-show="activeForm.hasOwnProperty('activeText')">
-          <el-input v-model="activeForm.activeText">{{activeForm.activeText}}</el-input>
+        <el-form-item label="Active Text" v-show="activeField.hasOwnProperty('activeText')">
+          <el-input v-model="activeField.activeText">{{activeField.activeText}}</el-input>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item label="Inactive Text" v-show="activeForm.hasOwnProperty('inActiveText')">
-          <el-input v-model="activeForm.inActiveText">{{activeForm.inActiveText}}</el-input>
+        <el-form-item label="Inactive Text" v-show="activeField.hasOwnProperty('inActiveText')">
+          <el-input v-model="activeField.inActiveText">{{activeField.inActiveText}}</el-input>
         </el-form-item>
       </el-col>
     </el-row>
 
-    <el-form-item label="uploadURL" v-show="activeForm.hasOwnProperty('uploadURL')">
-      <el-input v-model="activeForm.uploadURL">{{activeForm.uploadURL}}</el-input>
+    <el-form-item label="uploadURL" v-show="activeField.hasOwnProperty('uploadURL')">
+      <el-input v-model="activeField.uploadURL">{{activeField.uploadURL}}</el-input>
     </el-form-item>
 
-    <el-form-item label="Items" v-show="activeForm.hasOwnProperty('items')">
-      <li v-for="(item, index) in activeForm.items" :key="index" class="properties__optionslist">
+    <el-form-item label="Items" v-show="activeField.hasOwnProperty('items')">
+      <li v-for="(item, index) in activeField.items" :key="index" class="properties__optionslist">
         <el-row :gutter="5">
           <el-col :span="20">
             <el-input v-model="item.url">{{item.url}}</el-input>
           </el-col>
           <el-col :span="4">
-            <el-button v-show="activeForm.items.length > 1">
+            <el-button @click="deleteOption(activeField.items, index)" v-show="activeField.items.length > 1">
               <i class="el-icon-error"></i>
             </el-button>
           </el-col>
         </el-row>
       </li>
-      <el-button type="text" @click="addItem(activeForm.items)">
+      <el-button type="text" @click="addItem(activeField.items)">
         <i class="el-icon-plus"></i>
         Add more
       </el-button>
     </el-form-item>
 
-    <el-form-item label="Options" v-if="!activeForm.isFromUrl && activeForm.options">
+    <el-form-item label="Options" v-if="!activeField.isFromUrl && activeField.options">
       <ul class="properties__optionsul">
         <li class="properties__optionslist">
           <el-row :gutter="5">
@@ -114,7 +114,7 @@
             </el-col>
           </el-row>
         </li>
-        <li v-for="(item, index) in activeForm.options" :key="index" class="properties__optionslist">
+        <li v-for="(item, index) in activeField.options" :key="index" class="properties__optionslist">
           <el-row :gutter="5">
             <el-col :span="10">
               <el-input v-model="item.optionLabel">{{item.optionLabel}}</el-input>
@@ -123,20 +123,20 @@
               <el-input v-model="item.optionValue">{{item.optionValue}}</el-input>
             </el-col>
             <el-col :span="4">
-              <el-button @click="deleteOption(activeForm.options, index)" v-show="activeForm.options.length > 1">
+              <el-button @click="deleteOption(activeField.options, index)" v-show="activeField.options.length > 1">
                 <i class="el-icon-error"></i>
               </el-button>
             </el-col>
           </el-row>
         </li>
       </ul>
-      <el-button type="text" @click="addOption(activeForm.options)">
+      <el-button type="text" @click="addOption(activeField.options)">
         <i class="el-icon-plus"></i>
         Add more
       </el-button>
     </el-form-item>
 
-    <el-form-item label="Table Columns" v-show="activeForm.fieldType === 'TableComponent'">
+    <el-form-item label="Table Columns" v-show="activeField.fieldType === 'TableComponent'">
       <ul class="properties__optionsul">
         <li class="properties__optionslist">
           <el-row :gutter="5">
@@ -153,7 +153,7 @@
             </el-col>
           </el-row>
         </li>
-        <li v-for="(column, index) in activeForm.tableColumns" :key="index" class="properties__optionslist">
+        <li v-for="(column, index) in activeField.tableColumns" :key="index" class="properties__optionslist">
           <el-row :gutter="5">
             <el-col :span="7">
               <el-input v-model="column.prop">{{column.prop}}</el-input>
@@ -165,34 +165,34 @@
               <el-input @change="columnWidth" v-model="column.width">{{column.width}}</el-input>
             </el-col>
             <el-col :span="3">
-              <el-button @click="deleteColumn(activeForm.tableColumns, index, column.prop)" v-show="activeForm.tableColumns.length > 1">
+              <el-button @click="deleteColumn(activeField.tableColumns, index, column.prop)" v-show="activeField.tableColumns.length > 1">
                 <i class="el-icon-error"></i>
               </el-button>
             </el-col>
           </el-row>
         </li>
       </ul>
-      <el-button type="text" @click="addColumn(activeForm.tableColumns)">
+      <el-button type="text" @click="addColumn(activeField.tableColumns)">
         <i class="el-icon-plus"></i>
         Add more
       </el-button>
     </el-form-item>
 
-    <el-form-item label="Html Content" v-show="activeForm.hasOwnProperty('htmlContent')">
-      <el-input :rows="10" type="textarea" v-model="activeForm.htmlContent">{{activeForm.htmlContent}}</el-input>
+    <el-form-item label="Html Content" v-show="activeField.hasOwnProperty('htmlContent')">
+      <el-input :rows="10" type="textarea" v-model="activeField.htmlContent">{{activeField.htmlContent}}</el-input>
     </el-form-item>
 
-    <el-button v-show="activeForm.hasOwnProperty('advancedOptions')" @click="advancedPropsVisible = true" style="width: 100%;" type="success">
+    <el-button v-show="activeField.hasOwnProperty('advancedOptions')" @click="advancedPropsVisible = true" style="width: 100%;" type="success">
       Advanced Options
     </el-button>
     <el-dialog :close-on-click-modal="false" title="Advanced Options" :visible.sync="advancedPropsVisible">
       <el-form ref="OptionsForm"  :rules="dialogRules">
-        <rating-advanced-props v-if="activeForm.fieldType === 'Rating'"></rating-advanced-props>
-        <text-input-advanced-props v-if="activeForm.fieldType === 'TextInput'"></text-input-advanced-props>
-        <html-advanced-props v-if="activeForm.fieldType === 'HtmlComponent'"></html-advanced-props>
-        <number-input-advanced-props v-if="activeForm.fieldType === 'NumberInput'"></number-input-advanced-props>
-        <select-list-advanced-props v-if="activeForm.fieldType === 'SelectList'"></select-list-advanced-props>
-        <options-advanced-props v-if="activeForm.fieldType === 'RadioButton' || activeForm.fieldType === 'Checkbox'"></options-advanced-props>
+        <rating-advanced-props v-if="activeField.fieldType === 'Rating'"></rating-advanced-props>
+        <text-input-advanced-props v-if="activeField.fieldType === 'TextInput'"></text-input-advanced-props>
+        <html-advanced-props v-if="activeField.fieldType === 'HtmlComponent'"></html-advanced-props>
+        <number-input-advanced-props v-if="activeField.fieldType === 'NumberInput'"></number-input-advanced-props>
+        <select-list-advanced-props v-if="activeField.fieldType === 'SelectList'"></select-list-advanced-props>
+        <options-advanced-props v-if="activeField.fieldType === 'RadioButton' || activeField.fieldType === 'Checkbox'"></options-advanced-props>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="confirmForm">Confirm</el-button>
@@ -221,7 +221,7 @@ export default {
     OptionsAdvancedProps,
     SelectListAdvancedProps
   },
-  store: ['activeForm'], // Get the form data from Home
+  store: ['activeField'], // Get the form data from Home
   data() {
     return {
       labelPosition: 'top',
@@ -236,8 +236,8 @@ export default {
     }
   },
   mounted() {
-    console.log("activeform ->", this.activeForm)
-    console.log("activeForm.hasOwnProperty('span') ->", this.activeForm.hasOwnProperty('span'))
+    console.log("activeField ->", this.activeField)
+    console.log("activeField.hasOwnProperty('span') ->", this.activeField.hasOwnProperty('span'))
   },
   methods: {
     deleteOption(option, index) {
@@ -257,7 +257,7 @@ export default {
     },
     deleteColumn(column, index, prop) {
       this.$delete(column, index)
-      this.activeForm.tableDatas.forEach(function(ele) {
+      this.activeField.tableDatas.forEach(function(ele) {
         delete ele[prop];
       })
     },

@@ -3,17 +3,17 @@
   <el-row>
     <el-col :span="8">
       <el-form-item label="Password">
-        <el-switch @change="passwordChange" v-model="activeForm.showPassword"></el-switch>
+        <el-switch @change="passwordChange" v-model="activeField.showPassword"></el-switch>
       </el-form-item>
     </el-col>
     <el-col :span="8">
       <el-form-item label="Disabled">
-        <el-switch v-model="activeForm.disabled"></el-switch>
+        <el-switch v-model="activeField.disabled"></el-switch>
       </el-form-item>
     </el-col>
     <el-col :span="8">
       <el-form-item label="Clearable">
-        <el-switch v-model="activeForm.clearable"></el-switch>
+        <el-switch v-model="activeField.clearable"></el-switch>
       </el-form-item>
     </el-col>
   </el-row>
@@ -21,12 +21,12 @@
   <el-row>
     <el-col :span="12">
       <el-form-item label="Prepend">
-        <el-input v-model="activeForm.prepend"></el-input>
+        <el-input v-model="activeField.prepend"></el-input>
       </el-form-item>
     </el-col>
     <el-col :span="12">
       <el-form-item label="Append">
-        <el-input v-model="activeForm.append"></el-input>
+        <el-input v-model="activeField.append"></el-input>
       </el-form-item>
     </el-col>
   </el-row>
@@ -34,12 +34,12 @@
   <el-row>
     <el-col :span="12">
       <el-form-item label="Show Word Limit">
-        <el-switch @change="showWordLimitChange" v-model="activeForm.showWordLimit"></el-switch>
+        <el-switch @change="showWordLimitChange" v-model="activeField.showWordLimit"></el-switch>
       </el-form-item>
     </el-col>
     <el-col :span="12">
-      <el-form-item label="Word Limit" v-show="activeForm.showWordLimit">
-        <el-input-number :min="1" v-model="activeForm.maxlength"></el-input-number>
+      <el-form-item label="Word Limit" v-show="activeField.showWordLimit">
+        <el-input-number :min="1" v-model="activeField.maxlength"></el-input-number>
       </el-form-item>
     </el-col>
   </el-row>
@@ -49,7 +49,7 @@
 <script>
 export default {
   name: 'RatingAdvancedProp',
-  store: ['activeForm'],
+  store: ['activeField'],
   data() {
     return {
       name: ''
@@ -58,12 +58,12 @@ export default {
   methods: {
     passwordChange(value) {
       if (value) {
-        this.activeForm.showWordLimit = false;
+        this.activeField.showWordLimit = false;
       }
     },
     showWordLimitChange(value) {
       if (value) {
-        this.activeForm.showPassword = false;
+        this.activeField.showPassword = false;
       }
     }
   }
