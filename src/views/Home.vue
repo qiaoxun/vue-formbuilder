@@ -3,7 +3,7 @@
   <el-container>
     <el-main class="el-main-left">
       <div class="wrapper--forms">
-        <el-form>
+        <el-form :model="validateForm" ref="dynamic_form">
           <el-row>
             <el-button style="margin-bottom: 10px;" type="primary" @click="addSection">Add Section</el-button>
           </el-row>
@@ -14,7 +14,7 @@
 
           <template v-for="(eachFormObj, eachFormIndex) in forms">
             <div :key="`div-${eachFormIndex}`" class="section-block">
-              <div class="source">
+              <div class="add-section">
                 <el-row>
                   <el-col :span="18">
                     <el-input placeholder="Please input section title" v-model="eachFormObj.title" style="width: 100%;"></el-input>
@@ -24,7 +24,7 @@
                   </el-col>
                 </el-row>
               </div>
-              <div class="meta">
+              <div class="section-content">
                 <el-row>
                   <draggable :list="eachFormObj.fields" class="dragArea" :group="{ name:'formbuilder', pull:false, put:true }" :sort="true" ghost-class="sortable__ghost">
                     <!-- The form elements starts (on the right) -->
@@ -34,7 +34,7 @@
 
                       <div @click="editElementProperties(field)">
                         <!-- <label class="form__label" v-model="form.label" v-show="form.hasOwnProperty('label')">{{ form.label }}</label> -->
-                        <component :is="field.fieldType" :currentField="field" class="form__field">
+                        <component :is="field.fieldType" :currentField="field" :eachFormIndex="eachFormIndex" class="form__field">
                         </component>
                       </div>
 
@@ -54,9 +54,11 @@
               </div>
             </div>
           </template>
+          <el-form-item v-if="forms.length !== 0">
+            <el-button type="primary" @click="submitForm('numberValidateForm')">Submit</el-button>
+          </el-form-item>
         </el-form>
       </div>
-
     </el-main>
 
     <el-aside class="wrapper--sidebar" width="30%">
@@ -83,7 +85,7 @@ import {
 
 export default {
   name: 'Home',
-  store: ['forms', 'activeField', 'activeTabForFields'],
+  store: ['forms', 'validateForm', 'activeField', 'activeTabForFields'],
   data() {
     return {
       sortElementOptions: FormBuilder.$data.sortElementOptions
@@ -100,6 +102,7 @@ export default {
     },
     cloneElement(index, field, form) {
       FormBuilder.cloneElement(index, field, form)
+      console.log('forms', this.forms)
     },
     editElementProperties(field) {
       console.log("form ->", this.forms)
@@ -121,7 +124,31 @@ export default {
         }).then(() => {
           this.$delete(this.forms, formIndex);
         });
-      
+    },
+    submitForm() {
+      this.dealWithValidateForm();
+      console.log("form ->", this.forms)
+      console.log("validateForm ->", this.validateForm)
+      this.$refs['dynamic_form'].validate((valid) => {
+        console.log('valid', valid)
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    dealWithValidateForm() {
+      var eachFormName = 'eachFormName';
+      for (let i = 0; i < this.forms.length; i++) {
+        const formObj = this.forms[i]
+        this.validateForm[eachFormName + i] = []
+        for (let j = 0; j < formObj.fields.length; j++) {
+          const field = formObj.fields[j]
+          this.validateForm[eachFormName + i].push({key: field.key, value: field.value})
+        }
+      }
     }
   }
 }
@@ -216,11 +243,11 @@ export default {
     border-radius: 3px;
 }
 
-.section-block .source {
+.section-block .add-section {
     padding: 10px
 }
 
-.section-block .meta {
+.section-block .section-content {
     background-color: #fafafa;
     border-top: 1px solid #eaeefb;
 }

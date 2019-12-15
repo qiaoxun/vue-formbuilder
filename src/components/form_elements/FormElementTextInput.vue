@@ -1,6 +1,11 @@
 <template>
-  <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'" :required="this.currentField.isRequired">
-    <el-input v-model="input" v-bind="attributesBinding">
+  <el-form-item 
+    :rules="currentField.rules" 
+    :label="currentField.label" 
+    :label-width="currentField.labelWidth + 'px'" 
+    :prop="'eachFormName' + eachFormIndex + '.' + currentField.key"
+    :required="this.currentField.isRequired">
+    <el-input v-model="currentField.value" v-bind="attributesBinding">
       <template v-if="currentField.prepend !== ''" slot="prepend">{{ currentField.prepend }}</template>
       <template v-if="currentField.append !== ''" slot="append">{{ currentField.append }}</template>
     </el-input>
@@ -10,12 +15,7 @@
 <script>
 export default {
   name: 'TextInput',
-  props: ['currentField'],
-  data() {
-    return {
-      input: ''
-    }
-  },
+  props: ['currentField', 'eachFormIndex'],
   computed: {
     attributesBinding() {
       var attr = {};

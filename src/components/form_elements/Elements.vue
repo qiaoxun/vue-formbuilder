@@ -35,7 +35,9 @@ export default {
   },
   methods: {
     clone(field) {
-      return _.cloneDeep(field);
+      let newField = _.cloneDeep(field)
+      newField.key = Date.now()
+      return newField
     },
     checkStopDragCondition(field) {
       var form = this.forms,

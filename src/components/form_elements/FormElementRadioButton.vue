@@ -1,6 +1,6 @@
 <template>
 <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
-  <el-radio v-model="radio" v-for="item in currentField.options" :key="item.optionValue" :label="item.optionValue" :disabled="item.disabled">
+  <el-radio v-model="currentField.value" v-for="item in currentField.options" :key="item.optionValue" :label="item.optionValue" :disabled="item.disabled">
   </el-radio>
 </el-form-item>
 </template>
@@ -10,11 +10,6 @@ import fetchData from '@/api/fetch-data';
 export default {
   name: 'RadioButton',
   props: ['currentField'],
-  data() {
-    return {
-      radio: '1'
-    }
-  },
   mounted() {
     if (this.currentField.isFromUrl) {
 

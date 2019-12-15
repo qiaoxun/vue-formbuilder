@@ -1,7 +1,7 @@
 <template>
   <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
     <el-date-picker
-      v-model="date"
+      v-model="currentField.value"
       type="date"
       placeholder="Pick a day">
     </el-date-picker>
@@ -12,11 +12,6 @@
 <script>
   export default {
     name: 'DatePicker',
-    props: ['currentField'],
-    data() {
-    	return {
-    		date: ''
-    	}
-    }
+    props: ['currentField']
   }
 </script>

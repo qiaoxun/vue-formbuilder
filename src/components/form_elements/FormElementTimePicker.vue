@@ -1,6 +1,6 @@
 <template>
 <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
-  <el-time-select v-model="time" :picker-options="{
+  <el-time-select v-model="currentField.value" :picker-options="{
         start: '00:00',
         step: '00:15',
         end: '23:45'
@@ -13,11 +13,6 @@
 <script>
 export default {
   name: 'TimePicker',
-  props: ['currentField'],
-  data() {
-    return {
-      time: ''
-    }
-  }
+  props: ['currentField']
 }
 </script>

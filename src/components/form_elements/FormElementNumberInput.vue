@@ -1,6 +1,6 @@
 <template>
 <el-form-item :label="currentField.label" :label-width="currentField.labelWidth + 'px'">
-  <el-input-number v-model="number" controls-position="right" v-bind="attributesBinding">
+  <el-input-number v-model="currentField.value" controls-position="right" v-bind="attributesBinding">
   </el-input-number>
 </el-form-item>
 </template>
@@ -10,11 +10,6 @@
 export default {
   name: 'NumberInput',
   props: ['currentField'],
-  data() {
-    return {
-      number: 0
-    }
-  },
   computed: {
     attributesBinding() {
       var attr = {};
