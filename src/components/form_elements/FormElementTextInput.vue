@@ -3,7 +3,7 @@
     :rules="currentField.rules" 
     :label="currentField.label" 
     :label-width="currentField.labelWidth + 'px'" 
-    :prop="'eachFormName' + eachFormIndex + '.' + currentField.key"
+    :prop="currentField.key"
     :required="this.currentField.isRequired">
     <el-input v-model="currentField.value" v-bind="attributesBinding">
       <template v-if="currentField.prepend !== ''" slot="prepend">{{ currentField.prepend }}</template>

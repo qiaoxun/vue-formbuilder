@@ -36,7 +36,7 @@ export default {
   methods: {
     clone(field) {
       let newField = _.cloneDeep(field)
-      newField.key = Date.now()
+      newField.key = newField.label + Date.now()
       return newField
     },
     checkStopDragCondition(field) {

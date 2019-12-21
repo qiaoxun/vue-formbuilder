@@ -143,10 +143,11 @@ export default {
       var eachFormName = 'eachFormName';
       for (let i = 0; i < this.forms.length; i++) {
         const formObj = this.forms[i]
-        this.validateForm[eachFormName + i] = []
+        // this.validateForm[eachFormName + i] = []
         for (let j = 0; j < formObj.fields.length; j++) {
           const field = formObj.fields[j]
-          this.validateForm[eachFormName + i].push({key: field.key, value: field.value})
+          // this.validateForm[eachFormName + i].push({key: field.key, value: field.value})
+          //this.validateForm[field.key] = field.value
         }
       }
     }
