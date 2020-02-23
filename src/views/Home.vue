@@ -3,7 +3,7 @@
   <el-container>
     <el-main class="el-main-left">
       <div class="wrapper--forms">
-        <el-form :model="validateForm" ref="dynamic_form">
+        <el-form :model="validateForm" ref="dynamic-form">
           <el-row>
             <el-button style="margin-bottom: 10px;" type="primary" @click="addSection">Add Section</el-button>
           </el-row>
@@ -129,7 +129,7 @@ export default {
       this.dealWithValidateForm();
       console.log("form ->", this.forms)
       console.log("validateForm ->", this.validateForm)
-      this.$refs['dynamic_form'].validate((valid) => {
+      this.$refs['dynamic-form'].validate((valid) => {
         console.log('valid', valid)
         if (valid) {
           alert('submit!');
